@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,6 +24,17 @@ class Category
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
+
+    /**
+     * @var Collection<int, Guide>
+     */
+    #[ORM\ManyToMany(targetEntity: Guide::class, mappedBy: 'categories')]
+    private Collection $guides;
+
+    public function __construct()
+    {
+        $this->guides = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -60,6 +73,33 @@ class Category
     public function setDate(\DateTimeInterface $date): static
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Guide>
+     */
+    public function getGuides(): Collection
+    {
+        return $this->guides;
+    }
+
+    public function addGuide(Guide $guide): static
+    {
+        if (!$this->guides->contains($guide)) {
+            $this->guides->add($guide);
+            $guide->addCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGuide(Guide $guide): static
+    {
+        if ($this->guides->removeElement($guide)) {
+            $guide->removeCategory($this);
+        }
 
         return $this;
     }
