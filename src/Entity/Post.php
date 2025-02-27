@@ -31,14 +31,14 @@ class Post
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\ManyToOne(inversedBy: 'posts')]
-    private ?User $user = null;
-
     /**
      * @var Collection<int, Reply>
      */
     #[ORM\OneToMany(targetEntity: Reply::class, mappedBy: 'post')]
     private Collection $replies;
+
+    #[ORM\ManyToOne(inversedBy: 'posts')]
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -110,17 +110,6 @@ class Post
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): static
-    {
-        $this->user = $user;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Reply>
@@ -148,6 +137,18 @@ class Post
                 $reply->setPost(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -28,14 +28,14 @@ class Guide
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\ManyToOne(inversedBy: 'guides')]
-    private ?User $user = null;
-
     /**
      * @var Collection<int, Category>
      */
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'guides')]
     private Collection $categories;
+
+    #[ORM\ManyToOne(inversedBy: 'guides')]
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -95,18 +95,6 @@ class Guide
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): static
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Category>
      */
@@ -127,6 +115,18 @@ class Guide
     public function removeCategory(Category $category): static
     {
         $this->categories->removeElement($category);
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

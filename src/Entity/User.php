@@ -6,35 +6,40 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User
+#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 15)]
-    private ?string $userName = null;
-
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 180)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $password = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $img = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $bio = null;
+    /**
+     * @var list<string> The user roles
+     */
+    #[ORM\Column]
+    private array $roles = [];
 
     /**
-     * @var Collection<int, Post>
+     * @var string The hashed password
      */
-    #[ORM\OneToMany(targetEntity: Post::class, mappedBy: 'user')]
-    private Collection $posts;
+    #[ORM\Column]
+    private ?string $password = null;
+
+    /**
+     * @var Collection<int, Guide>
+     */
+    #[ORM\OneToMany(targetEntity: Guide::class, mappedBy: 'user')]
+    private Collection $guides;
 
     /**
      * @var Collection<int, Reply>
@@ -43,33 +48,24 @@ class User
     private Collection $replies;
 
     /**
-     * @var Collection<int, Guide>
+     * @var Collection<int, Post>
      */
-    #[ORM\OneToMany(targetEntity: Guide::class, mappedBy: 'user')]
-    private Collection $guides;
+    #[ORM\OneToMany(targetEntity: Post::class, mappedBy: 'user')]
+    private Collection $posts;
+
+    #[ORM\Column(length: 20)]
+    private ?string $userName = null;
 
     public function __construct()
     {
-        $this->posts = new ArrayCollection();
-        $this->replies = new ArrayCollection();
         $this->guides = new ArrayCollection();
+        $this->replies = new ArrayCollection();
+        $this->posts = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getUserName(): ?string
-    {
-        return $this->userName;
-    }
-
-    public function setUserName(string $userName): static
-    {
-        $this->userName = $userName;
-
-        return $this;
     }
 
     public function getEmail(): ?string
@@ -84,6 +80,43 @@ class User
         return $this;
     }
 
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     *
+     * @return list<string>
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    /**
+     * @param list<string> $roles
+     */
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
     public function getPassword(): ?string
     {
         return $this->password;
@@ -96,54 +129,39 @@ class User
         return $this;
     }
 
-    public function getImg(): ?string
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials(): void
     {
-        return $this->img;
-    }
-
-    public function setImg(?string $img): static
-    {
-        $this->img = $img;
-
-        return $this;
-    }
-
-    public function getBio(): ?string
-    {
-        return $this->bio;
-    }
-
-    public function setBio(?string $bio): static
-    {
-        $this->bio = $bio;
-
-        return $this;
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 
     /**
-     * @return Collection<int, Post>
+     * @return Collection<int, Guide>
      */
-    public function getPosts(): Collection
+    public function getGuides(): Collection
     {
-        return $this->posts;
+        return $this->guides;
     }
 
-    public function addPost(Post $post): static
+    public function addGuide(Guide $guide): static
     {
-        if (!$this->posts->contains($post)) {
-            $this->posts->add($post);
-            $post->setUser($this);
+        if (!$this->guides->contains($guide)) {
+            $this->guides->add($guide);
+            $guide->setUser($this);
         }
 
         return $this;
     }
 
-    public function removePost(Post $post): static
+    public function removeGuide(Guide $guide): static
     {
-        if ($this->posts->removeElement($post)) {
+        if ($this->guides->removeElement($guide)) {
             // set the owning side to null (unless already changed)
-            if ($post->getUser() === $this) {
-                $post->setUser(null);
+            if ($guide->getUser() === $this) {
+                $guide->setUser(null);
             }
         }
 
@@ -181,31 +199,43 @@ class User
     }
 
     /**
-     * @return Collection<int, Guide>
+     * @return Collection<int, Post>
      */
-    public function getGuides(): Collection
+    public function getPosts(): Collection
     {
-        return $this->guides;
+        return $this->posts;
     }
 
-    public function addGuide(Guide $guide): static
+    public function addPost(Post $post): static
     {
-        if (!$this->guides->contains($guide)) {
-            $this->guides->add($guide);
-            $guide->setUser($this);
+        if (!$this->posts->contains($post)) {
+            $this->posts->add($post);
+            $post->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeGuide(Guide $guide): static
+    public function removePost(Post $post): static
     {
-        if ($this->guides->removeElement($guide)) {
+        if ($this->posts->removeElement($post)) {
             // set the owning side to null (unless already changed)
-            if ($guide->getUser() === $this) {
-                $guide->setUser(null);
+            if ($post->getUser() === $this) {
+                $post->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUserName(): ?string
+    {
+        return $this->userName;
+    }
+
+    public function setUserName(string $userName): static
+    {
+        $this->userName = $userName;
 
         return $this;
     }
