@@ -9,6 +9,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 
 class GuideType extends AbstractType
 {
@@ -17,7 +19,20 @@ class GuideType extends AbstractType
         $builder
             ->add('title')
             ->add('text')
-            ->add('img')
+            ->add('image', FileType::class, [
+                'label' => 'Photo du guide',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '5000k',
+                        'mimeTypes' => [
+                            'image/*',
+                        ],
+                        'mimeTypesMessage' => 'Image trop lourde',
+                    ])
+                ],
+            ])
             ->add('date', null, [
                 'widget' => 'single_text',
             ])

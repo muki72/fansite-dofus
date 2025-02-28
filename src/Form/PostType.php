@@ -8,6 +8,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 
 class PostType extends AbstractType
 {
@@ -16,14 +18,27 @@ class PostType extends AbstractType
         $builder
             ->add('title')
             ->add('text')
-            ->add('img')
             ->add('voteScore')
+            ->add('image', FileType::class, [
+                'label' => 'image du poste',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '5000k',
+                        'mimeTypes' => [
+                            'image/*',
+                        ],
+                        'mimeTypesMessage' => 'Image trop lourde',
+                    ])
+                ],
+            ])
             ->add('date', null, [
                 'widget' => 'single_text',
             ])
             ->add('user', EntityType::class, [
                 'class' => User::class,
-                'choice_label' => 'id',
+                'choice_label' => 'userName',
             ])
         ;
     }

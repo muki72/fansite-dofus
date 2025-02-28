@@ -56,6 +56,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 20)]
     private ?string $userName = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $bio = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $img = null;
+
     public function __construct()
     {
         $this->guides = new ArrayCollection();
@@ -230,12 +236,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getUserName(): ?string
     {
-        return $this->userName;
+        return strval($this->userName);
     }
 
     public function setUserName(string $userName): static
     {
         $this->userName = $userName;
+
+        return $this;
+    }
+
+    public function getBio(): ?string
+    {
+        return $this->bio;
+    }
+
+    public function setBio(?string $bio): static
+    {
+        $this->bio = $bio;
+
+        return $this;
+    }
+
+    public function getImg(): ?string
+    {
+        return $this->img;
+    }
+
+    public function setImg(?string $img): static
+    {
+        $this->img = $img;
 
         return $this;
     }

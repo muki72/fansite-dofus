@@ -7,6 +7,9 @@
         <button class="btn-submit"><a href="{{ path('app_reply_index') }}">Reply</a></button>
         <button class="btn-submit"><a href="{{ path('app_guide_index') }}">Guide</a></button>
         <button class="btn-submit"><a href="{{ path('app_category_index') }}">Category</a></button>
+        {# {% if app.user %}
+            <button class="btn-submit"><a href="{{ path('app_user_edit', { 'username': app.user.userName }) }}">Modifier mon profil</a></button>
+        {% endif %} #}
     </div>
     
     <div class="nav-login">
