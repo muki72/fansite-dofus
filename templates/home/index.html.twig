@@ -1,17 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Home
+{% endblock %}
 
 {% block body %}
-    
-   {% for guide in guides %}
-        {{guide.title}}
-        <br>
-        <a href="{{ path('app_guide_show', {'id': guide.id}) }}">
-            <img src="{{ asset('uploads/images/' ~ guide.img) }}" width="500">
-        </a>
-        <br>
-        
-   {% endfor %}
-    {{ dump(app.user) }}
+	<div class="guides-background">
+
+		<h2 class="title">guides</h2>
+		<div class="guides-home">
+
+
+			{% for guide in guides %}
+
+				<div class="guides-card">
+					<h3 class="title">{{guide.title}}</h3>
+
+					<a href="{{ path('app_guide_show', {'id': guide.id}) }}">
+						<img src="{{ asset('uploads/images/' ~ guide.img) }}" width="500">
+					</a>
+
+				</div>
+			{% endfor %}
+
+		</div>
+	</div>
+
+	<div class="post-home">
+		<div class="post-background">
+			<h2 class="title">postes</h2>
+			<h3>trier par :</h3>
+			<div class="sort-btn">
+				<button class="btn-submit">Chronologique</button>
+				<button class="btn-submit">Score de vote</button>
+			</div>
+		</div>
+		
+
+	</div>
+
 {% endblock %}

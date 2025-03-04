@@ -11,16 +11,18 @@ use App\Entity\Category;
 use App\Entity\Guide;
 use App\Form\GuideType;
 use App\Repository\GuideRepository;
+use App\Repository\PostRepository;
 use App\Entity\User;
 
 final class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(GuideRepository $guideRepository): Response
+    public function index(GuideRepository $guideRepository, PostRepository $PostRepository): Response
     {
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'guides' => $guideRepository->findAll(),
+            'postes' => $PostRepository->findAll(),
         ]);
     }
 }
