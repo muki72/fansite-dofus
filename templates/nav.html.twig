@@ -1,5 +1,5 @@
 <nav class="nav-bar">
-	<a href="{{ path('home') }}"><img src="{{ asset('images/logoplaceholder.png') }}" alt="Logo"></a>
+	<a href="{{ path('home') }}"><img src="{{ asset('images/logo_zaapy.png') }}" alt="Logo" class="logo"></a>
 
 
 	<div class="nav-index">
@@ -16,17 +16,14 @@
 			<a href="{{ path('app_category_index') }}">Category</a>
 		</button>
 		{# {% if app.user %}
-		            <button class="btn-submit"><a href="{{ path('app_user_edit', { 'username': app.user.userName }) }}">Modifier mon profil</a></button>
-		        {% endif %} #}
+						            <button class="btn-submit"><a href="{{ path('app_user_edit', { 'username': app.user.userName }) }}">Modifier mon profil</a></button>
+						        {% endif %} #}
 	</div>
 
 	{% if not is_granted('ROLE_USER')%}
 		<div class="nav-login">
 			<button class="btn-submit">
 				<a href="{{ path('app_login') }}">Se connecter</a>
-			</button>
-			<button class="btn-submit">
-				<a href="{{ path('app_register') }}">S'enregistrer</a>
 			</button>
 		</div>
 	{% endif %}

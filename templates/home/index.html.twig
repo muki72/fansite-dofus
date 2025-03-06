@@ -4,6 +4,15 @@
 {% endblock %}
 
 {% block body %}
+	<div class="almanax-container">
+		<div class="almanax-card">
+			<h2>{{ almanax.date }}</h2>
+			<h3>{{ almanax.tribute.item.name }} x {{ almanax.tribute.quantity }}</h3>
+			<img src="{{ almanax.tribute.item.image_urls.sd }}">
+			<h3>{{ almanax.bonus.description }}</h3>
+		</div>
+	</div>
+	
 	<div class="guides-background">
 
 		<h2 class="title">guides</h2>
@@ -13,7 +22,7 @@
 			{% for guide in guides %}
 
 				<div class="guides-card">
-					<h3 class="title">{{guide.title}}</h3>
+					<h3 class="title">{{ guide.title }}</h3>
 
 					<a href="{{ path('app_guide_show', {'id': guide.id}) }}">
 						<img src="{{ asset('uploads/images/' ~ guide.img) }}" width="500">

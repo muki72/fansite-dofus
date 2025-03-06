@@ -1,19 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Register
+{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+	<section class="form-section">
+		<h1 class="form-title">Register</h1>
 
-    {{ form_errors(registrationForm) }}
+		{{ form_start(registrationForm, {'attr': {'class': 'form-container'}}) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.userName) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
-{% endblock %}
+		{{ form_widget(registrationForm.email, {
+                    'attr': { 'class': 'form-input', 'placeholder': 'Email', 'autocomplete': 'email' }
+                }) }}
+
+
+		{{ form_widget(registrationForm.userName, {
+                    'attr': { 'class': 'form-input', 'placeholder': 'Pseudo', 'autocomplete': 'username' }
+                }) }}
+	</div>
+
+
+	{{ form_widget(registrationForm.plainPassword, {
+                    'attr': { 'class': 'form-input', 'placeholder': 'Mot De Passe', 'autocomplete': 'new-password' }
+                }) }}
+
+
+	<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+	<button type="submit" class="form-btn">Register</button>
+
+	{{ form_end(registrationForm) }}
+</section>{% endblock %}
