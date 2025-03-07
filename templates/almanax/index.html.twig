@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Almanax du Mois
+{% endblock %}
+
+{% block body %}
+	<h1>Almanax du Mois de
+		{{ "now"|date("F Y") }}</h1>
+	<div class="almanax-list">
+
+
+		{% for date, almanax in almanaxData %}
+			{% if date >= today %}
+
+
+				<div class="almanax-card">
+					<h2>{{ date|date("d F") }}</h2>
+					<img src="{{ almanax.tribute.item.image_urls.sd }}" alt="{{ almanax.tribute.item.name }}">
+					<h3>{{ almanax.tribute.item.name }}
+						x
+						{{ almanax.tribute.quantity }}</h3>
+					<p>{{ almanax.bonus.description }}</p>
+				</div>
+
+
+			{% endif %}
+		{% endfor %}
+
+
+	</div>
+{% endblock %}

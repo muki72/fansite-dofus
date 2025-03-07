@@ -6,10 +6,12 @@
 {% block body %}
 	<div class="almanax-container">
 		<div class="almanax-card">
-			<h2>{{ almanax.date }}</h2>
-			<h3>{{ almanax.tribute.item.name }} x {{ almanax.tribute.quantity }}</h3>
-			<img src="{{ almanax.tribute.item.image_urls.sd }}">
-			<h3>{{ almanax.bonus.description }}</h3>
+			<a href="{{ path('app_almanax') }}">
+				<h2>Almanax du jour</h2>
+				<h3>{{ almanax.tribute.item.name }} x {{ almanax.tribute.quantity }}</h3>
+				<img src="{{ almanax.tribute.item.image_urls.sd }}">
+				<h3>{{ almanax.bonus.description }}</h3>
+			</a>
 		</div>
 	</div>
 	

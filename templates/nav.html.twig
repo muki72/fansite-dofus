@@ -15,9 +15,10 @@
 		<button class="btn-submit">
 			<a href="{{ path('app_category_index') }}">Category</a>
 		</button>
-		{# {% if app.user %}
-						            <button class="btn-submit"><a href="{{ path('app_user_edit', { 'username': app.user.userName }) }}">Modifier mon profil</a></button>
-						        {% endif %} #}
+		<button class="btn-submit">
+			<a href="{{ path('app_almanax') }}">Almanax</a>
+		</button>
+
 	</div>
 
 	{% if not is_granted('ROLE_USER')%}

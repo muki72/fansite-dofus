@@ -110,10 +110,42 @@ h2 {
         background-color: var(--color-secondary);
         border: solid 1px var(--color-primary);
         border-radius: 15px;
-        width: 400px;
+        width: 25%;
         padding: 30px;
     }
 }
+
+.almanax-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+
+    .almanax-card {
+        text-align: center;
+        background-color: var(--color-secondary);
+        border: solid 1px var(--color-primary);
+        border-radius: 15px;
+        width: calc(25% - 32px);
+        padding: 30px;
+        box-sizing: border-box;
+
+        .almanax-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    }
+}
+
+
+
+
+
+
 
 
 /* FORM */
