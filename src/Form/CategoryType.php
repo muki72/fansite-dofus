@@ -8,6 +8,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 
 class CategoryType extends AbstractType
 {
@@ -15,15 +17,24 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('img')
+            ->add('image', FileType::class, [
+                'label' => 'image de la catégorie',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '5000k',
+                        'mimeTypes' => [
+                            'image/*',
+                        ],
+                        'mimeTypesMessage' => 'Image trop lourde',
+                    ])
+                ],
+            ])
             ->add('date', null, [
                 'widget' => 'single_text',
             ])
-            ->add('guides', EntityType::class, [
-                'class' => Guide::class,
-                'choice_label' => 'id',
-                'multiple' => true,
-            ])
+
         ;
     }
 

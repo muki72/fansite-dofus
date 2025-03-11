@@ -1,38 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Guide{% endblock %}
+{% block title %}Guide
+{% endblock %}
 
 {% block body %}
-    <h1>Guide</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ guide.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ guide.title }}</td>
-            </tr>
-            <tr>
-                <th>Text</th>
-                <td>{{ guide.text }}</td>
-            </tr>
-            <tr>
-                <th>Img</th>
-                <td>{{ guide.img }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ guide.date ? guide.date|date('Y-m-d') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+	
+	<div class="guide-card">
+		<h1>{{ guide.title }}</h1>
+        
 
-    <a href="{{ path('app_guide_index') }}">back to list</a>
+		<img src="{{ asset('uploads/images/' ~ guide.img) }}">
 
-    <a href="{{ path('app_guide_edit', {'id': guide.id}) }}">edit</a>
+		<p>{{ guide.text }}</p>
 
-    {{ include('guide/_delete_form.html.twig') }}
+
+		<td>{{ guide.date ? guide.date|date('Y-m-d') : '' }}</td>
+
+	</div>
+
+	<div class="inline">
+		<button class="btn-submit">
+			<a href="{{ path('home') }}">accueil</a>
+		</button>
+
+		<button class="btn-submit">
+			<a href="{{ path('app_guide_edit', {'id': guide.id}) }}">edit</a>
+		</button>
+	</div>
+
+	{# {{ include('guide/_delete_form.html.twig') }} #}
+
 {% endblock %}

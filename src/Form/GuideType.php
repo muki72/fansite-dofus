@@ -20,7 +20,7 @@ class GuideType extends AbstractType
             ->add('title')
             ->add('text')
             ->add('image', FileType::class, [
-                'label' => 'Photo du guide',
+                'label' => 'image du guide',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [

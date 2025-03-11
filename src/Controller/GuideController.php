@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Guide;
 use App\Form\GuideType;
 use App\Repository\GuideRepository;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,14 +54,16 @@ final class GuideController extends AbstractController
         return $this->render('guide/new.html.twig', [
             'guide' => $guide,
             'form' => $form,
+
         ]);
     }
 
     #[Route('/{id}', name: 'app_guide_show', methods: ['GET'])]
-    public function show(Guide $guide): Response
+    public function show(Guide $guide, CategoryRepository $categoryRepository): Response
     {
         return $this->render('guide/show.html.twig', [
             'guide' => $guide,
+            'category' => $categoryRepository->findAll(),
         ]);
     }
 
