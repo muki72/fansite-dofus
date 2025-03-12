@@ -38,6 +38,8 @@ a {
 
 h2 {
     font-size: 35px;
+    text-transform: capitalize;
+    text-shadow: $text-shadow;
 }
 
 
@@ -62,6 +64,10 @@ h2 {
     text-transform: capitalize;
     letter-spacing: 2px;
     text-align: center;
+}
+
+.icon{
+    width: 40px;
 }
 
 .btn-submit {
@@ -120,14 +126,14 @@ h2 {
     }
 }
 
-// Almanax
-.almanax-container {
+// Almanax // portails
+.item-container {
     display: flex;
     align-items: center;
     justify-content: end;
     width: 98%;
 
-    .almanax-card {
+    .item-card {
         text-align: center;
         background-color: $color-secondary;
         border: $border;
@@ -138,7 +144,7 @@ h2 {
     }
 }
 
-.almanax-list {
+.item-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -146,7 +152,7 @@ h2 {
     width: 100%;
     box-sizing: border-box;
 
-    .almanax-card {
+    .item-card {
         text-align: center;
         background-color: $color-secondary;
         border: $border;
@@ -162,7 +168,7 @@ h2 {
             -webkit-line-clamp: 5;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            height: 150px;
+            
         }
 
         &.today {
@@ -191,10 +197,24 @@ h2 {
             height: auto;
         }
     }
-    .almanax-card:hover{
+    .item-card:hover{
         border: solid 1px $color-pink;
         box-shadow: none;
     }
+}
+
+.server-img{
+    border-radius: 15px;
+    scale: 1.2;
+    box-shadow: $box-shadow;
+}
+
+.portal-details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
 }
 
 // Formulaires

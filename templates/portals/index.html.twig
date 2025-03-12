@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Portals
+{% endblock %}
+
+{% block body %}
+	<h1>Portails</h1>
+
+
+	<div class="item-list">
+		{% for server in servers %}
+			<div class="item-card">
+				<h2>
+					<a href="{{ path('app_portals_server_details', {'serverName': server.id}) }}">
+						{{ server.id}}
+					</a>
+				</h2>
+				<a href="{{ path('app_portals_server_details', {'serverName': server.id}) }}">
+					<img src="https://dofus-portals.fr/images/servers/{{ server.id}}.webp" class="server-img" alt="serveur {{ server.id}}">
+				</a>
+
+			</div>
+		{% endfor %}
+
+
+	</div>
+
+{% endblock %}

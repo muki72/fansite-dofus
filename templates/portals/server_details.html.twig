@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Portals
+{% endblock %}
+
+{% block body %}
+
+	<h2>{{ serverName }}</h2>
+	<div class="item-list">
+		{% for detail in serverDetails %}
+			<div class="item-card">
+				<h2>{{ detail.dimension }}
+					[{{ detail.position.x}},{{ detail.position.y}}]</h2>
+				<div class="portal-details">
+					<p>Places: {{ detail.remainingUses}}</p>
+					<p>zone: {{ detail.position.transport.subArea}}</p>
+				</div>
+				<img src="https://dofus-portals.fr/images/portals/{{ detail.dimension }}.webp" alt="portail de {{ detail.dimension }}">
+			</div>
+
+
+		{% endfor %}
+	</div>
+
+	<button class="btn-submit">
+		<a href="{{ path('app_portals') }}">Retour aux Portails</a>
+	</button>
+
+{% endblock %}

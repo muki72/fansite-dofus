@@ -17,6 +17,8 @@ a {
 
 h2 {
   font-size: 35px;
+  text-transform: capitalize;
+  text-shadow: 1px 1px 5px #1E1E1E;
 }
 
 .inline {
@@ -38,6 +40,10 @@ h2 {
   text-transform: capitalize;
   letter-spacing: 2px;
   text-align: center;
+}
+
+.icon {
+  width: 40px;
 }
 
 .btn-submit {
@@ -91,13 +97,13 @@ h2 {
   margin-right: 50px;
 }
 
-.almanax-container {
+.item-container {
   display: flex;
   align-items: center;
   justify-content: end;
   width: 98%;
 }
-.almanax-container .almanax-card {
+.item-container .item-card {
   text-align: center;
   background-color: #072D38;
   border: solid 1px #00E5FF;
@@ -106,7 +112,7 @@ h2 {
   padding: 30px;
 }
 
-.almanax-list {
+.item-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -114,7 +120,7 @@ h2 {
   width: 100%;
   box-sizing: border-box;
 }
-.almanax-list .almanax-card {
+.item-list .item-card {
   text-align: center;
   background-color: #072D38;
   border: solid 1px #00E5FF;
@@ -125,38 +131,50 @@ h2 {
   padding: 30px;
   box-sizing: border-box;
 }
-.almanax-list .almanax-card p {
+.item-list .item-card p {
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  height: 150px;
 }
-.almanax-list .almanax-card.today {
+.item-list .item-card.today {
   width: calc(50% - 80px);
   border: solid 1px #f700ff;
   background-color: #00E5FF;
   color: #1E1E1E;
   box-shadow: none;
 }
-.almanax-list .almanax-card.today .rewards {
+.item-list .item-card.today .rewards {
   display: flex;
   justify-content: end;
   align-items: end;
   color: #1E1E1E;
 }
-.almanax-list .almanax-card .rewards {
+.item-list .item-card .rewards {
   display: flex;
   justify-content: end;
   align-items: end;
 }
-.almanax-list .almanax-card > img {
+.item-list .item-card > img {
   max-width: 100%;
   height: auto;
 }
-.almanax-list .almanax-card:hover {
+.item-list .item-card:hover {
   border: solid 1px #f700ff;
   box-shadow: none;
+}
+
+.server-img {
+  border-radius: 15px;
+  scale: 1.2;
+  box-shadow: #00E5FF 0px 2px 5px 0px, #00E5FF 0px 1px 1px 0px;
+}
+
+.portal-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .form-section {

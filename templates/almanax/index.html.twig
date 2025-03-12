@@ -6,9 +6,9 @@
 {% block body %}
 	<h1>Almanax du Mois de
 		{{ "now"|date("F Y") }}</h1>
-	<div class="almanax-list">
+	<div class="item-list">
 
-		<div class="almanax-card today">
+		<div class="item-card today">
 			<h2>{{ almanaxData[0].date|date('l j F') }}</h2>
 			<img src="{{ almanaxData[0].tribute.item.image_urls.sd }}" alt="{{ almanaxData[0].tribute.item.name }}">
 			<h3>{{ almanaxData[0].tribute.item.name }}
@@ -26,7 +26,7 @@
 		{% for almanax in almanaxData|slice(1) %}
 
 
-			<div class="almanax-card">
+			<div class="item-card">
 				<h3>{{ almanax.date|date('l j F') }}</h3>
 				<img src="{{ almanax.tribute.item.image_urls.sd }}" alt="{{ almanax.tribute.item.name }}">
 				<h3>{{ almanax.tribute.item.name }}
