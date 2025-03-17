@@ -22,6 +22,19 @@
 			<a href="{{ path('app_portals') }}">Portals</a>
 		</button>
 
+		{% if app.user %}
+			{% if app.user.img %}
+				<a href="{{ path('app_user_show', {'id': app.user.id}) }}">
+					<img src="{{ asset('uploads/images/' ~ app.user.img) }}" class="icon">
+				</a>
+			{% else %}
+				<button class="btn-submit">
+					<a href="{{ path('app_user_show', {'id': app.user.id}) }}">{{ app.user.userName }}</a>
+				</button>
+			{% endif %}
+		{% endif %}
+
+
 	</div>
 
 	{% if not is_granted('ROLE_USER')%}

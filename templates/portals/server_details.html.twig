@@ -10,8 +10,8 @@
 	<div class="item-list">
 		{% for detail in serverDetails %}
 			<div class="item-card">
-				<h2>{{ detail.dimension }}
-					[{{ detail.position.x}},{{ detail.position.y}}]</h2>
+				<h3>{{ detail.dimension }}
+					[{{ detail.position.x}},{{ detail.position.y}}]</h3>
 				<div class="portal-details">
 					<p>Places: {{ detail.remainingUses}}</p>
 					<p>zone: {{ detail.position.transport.subArea}}</p>

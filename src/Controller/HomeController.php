@@ -13,19 +13,21 @@ use App\Form\GuideType;
 use App\Repository\CategoryRepository;
 use App\Repository\GuideRepository;
 use App\Repository\PostRepository;
+use App\Repository\UserRepository;
 use App\Entity\User;
 
 final class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(GuideRepository $guideRepository, PostRepository $PostRepository, CategoryRepository $CategoryRepository): Response
+    public function index(GuideRepository $guideRepository, PostRepository $postRepository, CategoryRepository $categoryRepository, UserRepository $userRepository): Response
     {
         $date = date("Y-m-d");
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
+            'users' => $userRepository->findAll(),
             'guides' => $guideRepository->findAll(),
-            'categories' => $CategoryRepository->findAll(),
-            'postes' => $PostRepository->findAll(),
+            'categories' => $categoryRepository->findAll(),
+            'postes' => $postRepository->findAll(),
             'almanax' => json_decode(file_get_contents("https://api.dofusdu.de/dofus3/v1/fr/almanax/$date"))
         ]);
     }

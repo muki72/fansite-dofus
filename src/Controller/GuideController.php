@@ -24,6 +24,18 @@ final class GuideController extends AbstractController
         ]);
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
     #[Route('/new', name: 'app_guide_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
@@ -58,6 +70,15 @@ final class GuideController extends AbstractController
         ]);
     }
 
+
+
+
+
+
+
+
+
+    
     #[Route('/{id}', name: 'app_guide_show', methods: ['GET'])]
     public function show(Guide $guide, CategoryRepository $categoryRepository): Response
     {
