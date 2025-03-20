@@ -4,26 +4,52 @@
 {% endblock %}
 
 {% block body %}
-	<h1>{{ user.userName }}</h1>
+	<div class="user-container">
+		<div class="user-profile">
+			<h1>{{ user.userName }}</h1>
 
 
-	{% if app.user %}
-		{% if app.user.img %}
-			<a href="{{ path('app_user_show', {'id': app.user.id}) }}">
-				<img src="{{ asset('uploads/images/' ~ app.user.img) }}" class="icon">
-			</a>
-		{% else %}
-			<button class="btn-submit">
+			{% if app.user %}
+				{% if app.user.img %}
+					<a href="{{ path('app_user_show', {'id': app.user.id}) }}">
+						<img src="{{ asset('uploads/images/' ~ app.user.img) }}" class="icon">
+					</a>
+				{% else %}
+					<button class="btn-submit">
 
 
-				<a href="{{ path('app_user_edit', {'id': app.user.id}) }}">"AJOUTE UNE IMAGE"</a>
+						<a href="{{ path('app_user_edit', {'id': app.user.id}) }}">"AJOUTE UNE IMAGE"</a>
 
-			</button>
-		{% endif %}
-	{% endif %}
-
-	<p>{{ user.email }}</p>
-	<p>{{ user.bio }}</p>
+					</button>
+				{% endif %}
 
 
+				<button class="btn-submit">
+					<a href="{{ path('app_user_edit', {'id': app.user.id}) }}">Modifier mon Profil</a>
+				</button>
+			{% endif %}
+
+			<h3>{{ user.email }}</h3>
+			<p>{{ user.bio }}</p>
+
+
+		</div>
+
+		<div class="user-post">
+			<h2>Post et réponse de
+				{{ user.userName }}</h2>
+			<div class="post">
+				<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic, ut odit tempore, molestias ex ducimus illum nihil pariatur ab aliquam fugit ipsam. Hic sunt nihil dolores ratione? Accusantium, est nobis?</p>
+			</div>
+			<div class="post">
+				<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic, ut odit tempore, molestias ex ducimus illum nihil pariatur ab aliquam fugit ipsam. Hic sunt nihil dolores ratione? Accusantium, est nobis?</p>
+			</div>
+			<div class="post">
+				<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic, ut odit tempore, molestias ex ducimus illum nihil pariatur ab aliquam fugit ipsam. Hic sunt nihil dolores ratione? Accusantium, est nobis?</p>
+			</div>
+			<div class="post">
+				<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic, ut odit tempore, molestias ex ducimus illum nihil pariatur ab aliquam fugit ipsam. Hic sunt nihil dolores ratione? Accusantium, est nobis?</p>
+			</div>
+		</div>
+	</div>
 {% endblock %}

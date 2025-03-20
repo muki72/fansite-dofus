@@ -1,27 +1,9 @@
 <nav class="nav-bar">
-	<a href="{{ path('home') }}"><img src="{{ asset('images/logo_zaapy.png') }}" alt="Logo" class="logo"></a>
+	<div class="logo-wrapper">
+		<a href="{{ path('home') }}"><img src="{{ asset('images/logo_zaapy.png') }}" alt="Logo"></a>
+	</div>
 
-
-	<div class="nav-index">
-		<button class="btn-submit">
-			<a href="{{ path('app_post_index') }}">Post</a>
-		</button>
-		<button class="btn-submit">
-			<a href="{{ path('app_reply_index') }}">Reply</a>
-		</button>
-		<button class="btn-submit">
-			<a href="{{ path('app_guide_index') }}">Guide</a>
-		</button>
-		<button class="btn-submit">
-			<a href="{{ path('app_category_index') }}">Category</a>
-		</button>
-		<button class="btn-submit">
-			<a href="{{ path('app_almanax') }}">Almanax</a>
-		</button>
-		<button class="btn-submit">
-			<a href="{{ path('app_portals') }}">Portals</a>
-		</button>
-
+	<div class="nav-login">
 		{% if app.user %}
 			{% if app.user.img %}
 				<a href="{{ path('app_user_show', {'id': app.user.id}) }}">
@@ -34,15 +16,10 @@
 			{% endif %}
 		{% endif %}
 
-
-	</div>
-
-	{% if not is_granted('ROLE_USER')%}
-		<div class="nav-login">
+		{% if not is_granted('ROLE_USER')%}
 			<button class="btn-submit">
 				<a href="{{ path('app_login') }}">Se connecter</a>
 			</button>
-		</div>
-	{% endif %}
-
+		{% endif %}
+	</div>
 </nav>

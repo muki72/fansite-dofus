@@ -66,12 +66,6 @@ h2 {
     text-align: center;
 }
 
-.icon{
-    width: 40px;
-}
-
-
-
 .btn-submit {
     background-color: $color-secondary;
     color: $color-text;
@@ -99,34 +93,63 @@ h2 {
     }
 }
 
-.logo:hover {
-    scale: 1.08;
+.icon{
+    width: 40px;
 }
 
 //  Nav Bar
 .nav-bar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 97%;
+    justify-content: center;
+    width: 98%;
     height: 100px;
     border-radius: 15px;
     background-color: $color-secondary;
     border: $border;
     padding-right: 30px;
+    position: relative;
 
-    img {
-        height: 80px;
-        width: 80px;
+    .logo-wrapper {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        
+
+        
+        a{
+            img {
+                padding-top: 25px;
+                height: 150px;
+                width: 150px;
+            }
+
+            img:hover{
+                scale: 1.05;
+            }
+        }
+
     }
-
     .nav-login {
+        position: absolute;
+        right: 0;
         display: flex;
-        justify-content: space-between;
-        gap: 30px;
-        margin-right: 50px;
+        align-items: center;
+        padding-right: 30px;
+
+        .icon{
+            width: 80px;
+            border-radius: 90px;
+            border: $border;
+        }
+
+        .icon:hover{
+            scale: 1.05;
+        }
     }
+
 }
+
 
 // Almanax // portails
 .item-container {
@@ -134,6 +157,10 @@ h2 {
     align-items: center;
     justify-content: end;
     width: 98%;
+
+    .nav-btn{
+        padding-right: 100px;
+    }
 
     .item-card {
         text-align: center;
@@ -391,9 +418,6 @@ h2 {
 }
 
 
-
-
-
 .post-home {
     height: 600px;
     width: 99%;
@@ -418,4 +442,44 @@ h2 {
         }
     }
     
+}
+
+.user-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    
+
+    .user-profile{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 25%;
+        height: 100vh;
+        padding: 20px;
+        border: $border;
+        background-color: $color-secondary;
+        border-radius: 15px;
+        gap: 5%;
+
+        .icon{
+            width: 200px;
+            border: $border;
+        }
+    }
+
+    .user-post{
+        width: 75%;
+        padding: 20px;
+        gap: 5%;
+        text-align: center;
+
+
+        .post{
+            border: $border;
+            margin: 5%;
+        }
+    }
+
 }

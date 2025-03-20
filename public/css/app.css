@@ -42,10 +42,6 @@ h2 {
   text-align: center;
 }
 
-.icon {
-  width: 40px;
-}
-
 .btn-submit {
   background-color: #072D38;
   color: #D9D9D9;
@@ -71,30 +67,49 @@ h2 {
   box-shadow: 0 2px 6px rgba(0, 229, 255, 0.4);
 }
 
-.logo:hover {
-  scale: 1.08;
+.icon {
+  width: 40px;
 }
 
 .nav-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 97%;
+  justify-content: center;
+  width: 98%;
   height: 100px;
   border-radius: 15px;
   background-color: #072D38;
   border: solid 1px #00E5FF;
   padding-right: 30px;
+  position: relative;
 }
-.nav-bar img {
-  height: 80px;
-  width: 80px;
+.nav-bar .logo-wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.nav-bar .logo-wrapper a img {
+  padding-top: 25px;
+  height: 150px;
+  width: 150px;
+}
+.nav-bar .logo-wrapper a img:hover {
+  scale: 1.05;
 }
 .nav-bar .nav-login {
+  position: absolute;
+  right: 0;
   display: flex;
-  justify-content: space-between;
-  gap: 30px;
-  margin-right: 50px;
+  align-items: center;
+  padding-right: 30px;
+}
+.nav-bar .nav-login .icon {
+  width: 80px;
+  border-radius: 90px;
+  border: solid 1px #00E5FF;
+}
+.nav-bar .nav-login .icon:hover {
+  scale: 1.05;
 }
 
 .item-container {
@@ -102,6 +117,9 @@ h2 {
   align-items: center;
   justify-content: end;
   width: 98%;
+}
+.item-container .nav-btn {
+  padding-right: 100px;
 }
 .item-container .item-card {
   text-align: center;
@@ -360,4 +378,37 @@ h2 {
 }
 .post-home .post-background .sort-btn {
   margin-bottom: 10px;
+}
+
+.user-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.user-container .user-profile {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 25%;
+  height: 100vh;
+  padding: 20px;
+  border: solid 1px #00E5FF;
+  background-color: #072D38;
+  border-radius: 15px;
+  gap: 5%;
+}
+.user-container .user-profile .icon {
+  width: 200px;
+  border: solid 1px #00E5FF;
+}
+.user-container .user-post {
+  width: 75%;
+  padding: 20px;
+  gap: 5%;
+  text-align: center;
+}
+.user-container .user-post .post {
+  border: solid 1px #00E5FF;
+  margin: 5%;
 }/*# sourceMappingURL=app.css.map */

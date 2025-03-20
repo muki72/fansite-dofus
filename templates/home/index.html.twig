@@ -4,8 +4,26 @@
 {% endblock %}
 
 {% block body %}
-	
+
+
 	<div class="item-container">
+		<div class="nav-btn">
+			<button class="btn-submit">
+				<a href="{{ path('app_post_index') }}">Post</a>
+			</button>
+			<button class="btn-submit">
+				<a href="{{ path('app_reply_index') }}">Reply</a>
+			</button>
+			<button class="btn-submit">
+				<a href="{{ path('app_guide_index') }}">Guide</a>
+			</button>
+			<button class="btn-submit">
+				<a href="{{ path('app_category_index') }}">Category</a>
+			</button>
+			<button class="btn-submit">
+				<a href="{{ path('app_portals') }}">Portals</a>
+			</button>
+		</div>
 		<div class="item-card">
 			<a href="{{ path('app_almanax') }}">
 				<h2>Almanax du jour</h2>
