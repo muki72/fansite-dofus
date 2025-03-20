@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\File;
@@ -16,9 +17,14 @@ class UserType extends AbstractType
         $builder
             ->add('userName')
             ->add('email')
-            ->add('bio')
+            ->add('bio', TextareaType::class, [
+                'attr' => [
+                    'class' => 'form-textarea',
+                    'placeholder' => 'Écrivez votre bio ici...',
+                    'rows' => 5, // Définit la hauteur du champ
+                ]
+            ])
             ->add('image', FileType::class, [
-                'label' => 'image de profil',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [

@@ -1,16 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit User
+{% block title %}Modifier mon profil
 {% endblock %}
 
 {% block body %}
-	<h1>Edit User</h1>
+<section class="profile-edit-section">
+	<h1 class="title">Modifier mon profil</h1>
 
+	<div class="profile-edit-container">
+		{{ form_start(form) }}
 
-	{{ include('user/_form.html.twig', {'button_label': 'Modifier'}) }}
+		<div class="form-group">
+			{{ form_widget(form.userName, {'attr': {'class': 'form-input', 'placeholder': 'Nom d\'utilisateur'}}) }}
+            </div>
 
+            <div class="form-group">
+                {{ form_widget(form.email, {'attr': {'class': 'form-input', 'placeholder': 'Email'}}) }}
+            </div>
 
-	<button class="btn-submit">
-		<a href="{{ path('app_user_show', {'id': app.user.id}) }}">Annuler</a>
-	</button>
+            <div class="form-group">
+                {{ form_widget(form.bio, {'attr': {'class': 'form-input-text', 'placeholder': 'Votre bio'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_widget(form.image, {'attr': {'class': 'form-input file-upload'}}) }}
+            </div>
+
+            <button type="submit" class="btn-submit">Modifier</button>
+            {{ form_end(form) }}
+
+            <a href="{{ path('app_user_show', {'id': app.user.id}) }}" class="profile-edit-cancel">Annuler</a>
+        </div>
+    </section>
 {% endblock %}

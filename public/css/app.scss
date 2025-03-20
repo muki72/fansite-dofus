@@ -260,6 +260,30 @@ h2 {
     height: 80vh;
 }
 
+.profile-edit-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 110vh;
+    background-color: $color-background;
+}
+
+.profile-edit-container {
+    display: flex;
+    align-items: center;
+    background: $color-background;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba($color-primary, 0.3);
+    border: $border;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
 .form-container {
     display: flex;
     flex-direction: column;
@@ -269,8 +293,8 @@ h2 {
     margin-top: 5rem;
     border-radius: 8px;
     box-shadow: 0 0 10px $color-primary;
-    width: 30%;
-    height: 500px;
+    width: 80%;
+    height: 80vh;
     gap: 30px;
     background: rgba(168, 188, 190, 0.33);
     backdrop-filter: blur(7.4px);
@@ -282,15 +306,44 @@ h2 {
 }
 
 .form-input {
+    text-align: center;
     width: 400px;
     height: 50px;
     padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     border: 2px solid transparent;
+    background-color: $color-secondary;
     border-radius: 15px;
-    background-color: $color-background;
     color: $color-text;
     font-size: 1rem;
     transition: border 0.3s ease-in-out;
+
+    &::placeholder {
+        color: $color-text;
+        opacity: 0.7;
+    }
+
+    &:hover {
+        border: $border;
+        outline: none;
+    }
+}
+
+.form-input-text{
+    text-align: center;
+    width: 400px;
+    height: 100px;
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 2px solid transparent;
+    background-color: $color-secondary;
+    border-radius: 15px;
+    color: $color-text;
+    font-size: 0.8rem;
+    transition: border 0.3s ease-in-out;
+    resize: none;
 
     &::placeholder {
         color: $color-text;
@@ -318,6 +371,20 @@ h2 {
     &:hover {
         background-color: $color-primary;
         color: $color-background;
+    }
+}
+
+.profile-edit-cancel {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: $color-primary;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+
+    &:hover {
+        color: $color-text;
     }
 }
 
