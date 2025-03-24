@@ -19,6 +19,7 @@ final class CategoryController extends AbstractController
     #[Route(name: 'app_category_index', methods: ['GET'])]
     public function index(CategoryRepository $categoryRepository): Response
     {
+
         return $this->render('category/index.html.twig', [
             'categories' => $categoryRepository->findAll(),
         ]);
@@ -27,6 +28,8 @@ final class CategoryController extends AbstractController
     #[Route('/new', name: 'app_category_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
+        //securité pour verifier le role du visiteur
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
@@ -69,6 +72,8 @@ final class CategoryController extends AbstractController
     #[Route('/{id}/edit', name: 'app_category_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Category $category, EntityManagerInterface $entityManager): Response
     {
+        //securité pour verifier le role du visiteur
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 

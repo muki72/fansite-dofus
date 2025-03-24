@@ -35,7 +35,7 @@ final class PortalsController extends AbstractController
     public function serverDetails(string $serverName, HttpClientInterface $httpClient): Response
     {
         // Récupérer les détails du serveur spécifique
-        $response = $httpClient->request('GET', "https://api.dofus-portals.fr/internal/v1/servers/{$serverName}/portals");
+        $response = $httpClient->request('GET', "https://api.dofus-portals.fr/internal/v1/servers/$serverName/portals");
         $content = $response->getContent();
         $serverDetails = json_decode($content, true);
 

@@ -5,10 +5,10 @@
 
 {% block body %}
 
-	
+
 	<div class="guide-card">
 		<h1>{{ guide.title }}</h1>
-        
+
 
 		<img src="{{ asset('uploads/images/' ~ guide.img) }}">
 
@@ -24,11 +24,12 @@
 			<a href="{{ path('home') }}">accueil</a>
 		</button>
 
-		<button class="btn-submit">
-			<a href="{{ path('app_guide_edit', {'id': guide.id}) }}">edit</a>
-		</button>
+		{% if is_granted('ROLE_ADMIN') %}
+			<button class="btn-submit">
+				<a href="{{ path('app_guide_edit', {'id': guide.id}) }}">edit</a>
+			</button>
+		{% endif %}
 	</div>
 
-	{# {{ include('guide/_delete_form.html.twig') }} #}
 
 {% endblock %}

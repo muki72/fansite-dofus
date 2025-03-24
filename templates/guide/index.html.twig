@@ -1,42 +1,46 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Guide index{% endblock %}
 
 {% block body %}
-    <h1>Guide index</h1>
+	
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Text</th>
-                <th>Img</th>
-                <th>Date</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for guide in guides %}
-            <tr>
-                <td>{{ guide.id }}</td>
-                <td>{{ guide.title }}</td>
-                <td>{{ guide.text }}</td>
-                <td>{{ guide.img }}</td>
-                <td>{{ guide.date ? guide.date|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_guide_show', {'id': guide.id}) }}">show</a>
-                    <a href="{{ path('app_guide_edit', {'id': guide.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <button class="btn-submit">
-        <a href="{{ path('app_guide_new') }}">Create new</a>
-    </button>
+	{% for guide in guides %}
+
+		<div class="table-admin">
+			<div class="table-header">
+				<p>ID</p>
+				<p>Titre</p>
+				<p>Texte</p>
+				<p>Image</p>
+				<p>Date</p>
+				<p>Actions</p>
+			</div>
+
+			<div class="table-row">
+				<p>{{ guide.id }}</p>
+				<p>{{ guide.title }}</p>
+				<p>{{ guide.text }}</p>
+				<div>
+					<img src="{{ asset('uploads/images/' ~ guide.img) }}" alt="image du guide {{ guide.title }}">
+				</div>
+				<p>{{ guide.date ? guide.date|date('d/m/Y') : '' }}</p>
+				<div class="actions">
+					<button class="btn-submit">
+						<a href="{{ path('app_guide_show', {'id': guide.id}) }}">Afficher</a>
+					</button>
+					<button class="btn-submit">
+						<a href="{{ path('app_guide_edit', {'id': guide.id}) }}">Modifier</a>
+					</button>
+				</div>
+			</div>
+		</div>
+
+
+	{% else %}
+
+		<p>aucun guide disponible</p>
+
+	{% endfor %}
+
+	<button class="btn-submit">
+		<a href="{{ path('app_guide_new') }}">Creer un Guide</a>
+	</button>
 {% endblock %}

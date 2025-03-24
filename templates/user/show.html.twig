@@ -9,29 +9,34 @@
 			<h1>{{ user.userName }}</h1>
 
 
-			{% if app.user %}
-				{% if app.user.img %}
-					<a href="{{ path('app_user_show', {'id': app.user.id}) }}">
-						<img src="{{ asset('uploads/images/' ~ app.user.img) }}" class="icon">
+			{% if user %}
+				{% if user.img %}
+					<a href="{{ path('app_user_show', {'id': user.id}) }}">
+						<img src="{{ asset('uploads/images/' ~ user.img) }}" class="icon">
 					</a>
 				{% else %}
 					<button class="btn-submit">
 
 
-						<a href="{{ path('app_user_edit', {'id': app.user.id}) }}">"AJOUTE UNE IMAGE"</a>
+						<a href="{{ path('app_user_edit', {'id': user.id}) }}">"AJOUTE UNE IMAGE"</a>
 
 					</button>
 				{% endif %}
 
+				{% if app.user.id == user.id %}
+					<button class="btn-submit">
+						<a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier mon Profil</a>
+					</button>
+				{% endif %}
 
-				<button class="btn-submit">
-					<a href="{{ path('app_user_edit', {'id': app.user.id}) }}">Modifier mon Profil</a>
-				</button>
 			{% endif %}
 
 			<h3>{{ user.email }}</h3>
 			<p>{{ user.bio }}</p>
 
+			{% if app.user.id == user.id %}
+				<a href="{{ path('app_logout') }}" class="danger">Deconnecter mon compte</a>
+			{% endif %}
 
 		</div>
 

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard
+{% endblock %}
+
+{% block body %}
+	<h1>Dashboard</h1>
+
+	<section>
+		<h2>Catégories</h2>
+		{% include 'category/index.html.twig' %}
+		<h2>Guides</h2>
+		{% include 'guide/index.html.twig' %}
+	</section>
+
+{% endblock %}

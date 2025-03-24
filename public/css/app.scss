@@ -97,6 +97,10 @@ h2 {
     width: 40px;
 }
 
+.danger{
+    color: red;
+}
+
 //  Nav Bar
 .nav-bar {
     display: flex;
@@ -549,4 +553,97 @@ h2 {
         }
     }
 
+}
+
+
+//dashboard
+
+.dashboard-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.dashboard-guides, .dashboard-categories {
+    flex: 1;
+    min-width: 45%;
+    background: var(--color-secondary);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+}
+
+
+.table-admin {
+    width: 98%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    background: $color-secondary;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba($color-primary, 0.3);
+    overflow: hidden;
+
+    
+    .table-header,
+    .table-row {
+        display: grid;
+        grid-template-columns: 5% 15% 35% 15% 15% 10%; 
+        align-items: center;
+        padding: 15px;
+
+        p {
+            text-align: center;
+            padding: 5px;
+        }
+    }
+
+    .table-header {
+        background: $color-primary;
+        color: $color-background;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .table-row {
+        border-bottom: 1px solid $color-primary;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        p {
+            color: $color-text;
+        }
+
+       
+        p:nth-child(3) { 
+            text-align: left;
+            padding: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+       
+        div {
+            display: flex;
+            justify-content: center;
+
+            img {
+                width: 80px;
+                height: 80px;
+                border-radius: 5px;
+            }
+        }
+
+        
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+    }
 }

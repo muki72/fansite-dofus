@@ -39,7 +39,8 @@ final class GuideController extends AbstractController
     #[Route('/new', name: 'app_guide_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
-
+        //securité pour verifier le role du visiteur
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $guide = new Guide();
         $form = $this->createForm(GuideType::class, $guide);
         $form->handleRequest($request);
@@ -78,7 +79,7 @@ final class GuideController extends AbstractController
 
 
 
-    
+
     #[Route('/{id}', name: 'app_guide_show', methods: ['GET'])]
     public function show(Guide $guide, CategoryRepository $categoryRepository): Response
     {
@@ -91,6 +92,8 @@ final class GuideController extends AbstractController
     #[Route('/{id}/edit', name: 'app_guide_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Guide $guide, EntityManagerInterface $entityManager): Response
     {
+        //securité pour verifier le role du visiteur
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(GuideType::class, $guide);
         $form->handleRequest($request);
 
