@@ -1,13 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Guide{% endblock %}
+{% block title %}Edit Guide
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Guide</h1>
+	<section class="edit-section">
+		<h1 class="title">Modifier un guide</h1>
 
-    {{ include('guide/_form.html.twig', {'button_label': 'Update'}) }}
+		<div class="edit-container">
+			{{ form_start(form) }}
 
-    <a href="{{ path('app_guide_index') }}">back to list</a>
+			<div class="form-group">
+				{{ form_widget(form.title, {'attr': {'class': 'form-input', 'placeholder': 'titre'}}) }}
+			</div>
 
-    {{ include('guide/_delete_form.html.twig') }}
+			<div class="form-group">
+				{{ form_widget(form.text, {'attr': {'class': 'form-input-text', 'placeholder': 'contenu'}}) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_widget(form.image, {'attr': {'class': 'form-input file-upload'}}) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_widget(form.date, {'attr': {'class': 'form-input', 'placeholder': 'date'}}) }}
+			</div>
+			<div class="form-group">
+				{{ form_widget(form.categories, {'attr': {'class': 'form-input', 'placeholder': 'categories'}}) }}
+			</div>
+			<div class="form-group">
+				{{ form_widget(form.user, {'attr': {'class': 'form-input', 'placeholder': 'user'}}) }}
+			</div>
+
+			<button type="submit" class="btn-submit">Modifier</button>
+			{{ form_end(form) }}
+
+			<a href="{{ path('app_dashboard') }}" class="edit-cancel">Annuler</a>
+		</div>
+	</section>
 {% endblock %}

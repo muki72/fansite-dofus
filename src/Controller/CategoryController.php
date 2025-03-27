@@ -51,7 +51,7 @@ final class CategoryController extends AbstractController
             $entityManager->persist($category);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('category/new.html.twig', [
@@ -80,7 +80,7 @@ final class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('category/edit.html.twig', [
@@ -97,6 +97,6 @@ final class CategoryController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
     }
 }

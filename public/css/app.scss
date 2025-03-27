@@ -10,7 +10,7 @@ $box-shadow: #00E5FF 0px 2px 5px 0px, #00E5FF 0px 1px 1px 0px;
 $inset-box-shadow: #1E1E1E 0px 2px 4px 0px inset;
 
 $border: solid 1px $color-primary;
-
+$border-pink: solid 1px $color-pink;
 
 @mixin responsive($size) {
     @media (max-width: $size) {
@@ -93,8 +93,37 @@ h2 {
     }
 }
 
+.btn-delete{
+    background-color: $color-secondary;
+    color: $color-text;
+    border: $border-pink;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba($color-pink, 0.3);
+
+    &:hover {
+        background-color: $color-pink;
+        color: $color-background;
+        border-color: $color-secondary;
+        box-shadow: 0 4px 12px rgba($color-pink, 0.6);
+        transform: scale(1.05);
+    }
+
+    &:active {
+        transform: scale(0.98);
+        box-shadow: 0 2px 6px rgba($color-primary, 0.4);
+    }
+}
+
+
 .icon{
     width: 40px;
+    height: 80px;
 }
 
 .danger{
@@ -264,7 +293,7 @@ h2 {
     height: 80vh;
 }
 
-.profile-edit-section {
+.edit-section {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -273,7 +302,7 @@ h2 {
     background-color: $color-background;
 }
 
-.profile-edit-container {
+.edit-container {
     display: flex;
     align-items: center;
     background: $color-background;
@@ -312,7 +341,7 @@ h2 {
 .form-input {
     text-align: center;
     width: 400px;
-    height: 50px;
+    height: 60px;
     padding: 10px;
     margin-top: 15px;
     margin-bottom: 15px;
@@ -333,6 +362,7 @@ h2 {
         outline: none;
     }
 }
+
 
 .form-input-text{
     text-align: center;
@@ -378,7 +408,7 @@ h2 {
     }
 }
 
-.profile-edit-cancel {
+.edit-cancel {
     display: block;
     text-align: center;
     margin-top: 10px;
@@ -488,12 +518,12 @@ h2 {
     }
 }
 
+//post
 
 .post-home {
-    height: 600px;
     width: 99%;
 
-    .post-background {
+    .post-sort-background {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -515,6 +545,55 @@ h2 {
     
 }
 
+.post-container{
+    flex-direction: column;
+    width: 50%;
+    background-color: $color-secondary;
+    border: $border;
+    border-radius: 15px;
+    padding: 1% 2% 1% 2% ;
+
+    .post-head{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .post-user{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: $color-primary;
+
+            a:hover{
+                text-decoration: underline;
+                text-decoration-color: $color-primary;
+            }
+
+            img{
+                width: 80px;
+                
+            }
+
+            img:hover{
+                border: $border-pink;
+            }
+        }
+    }
+
+    .post-body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        img{
+            width: 50%;
+        }
+    }
+}
+
+
+//profile
+
 .user-container{
     display: flex;
     align-items: center;
@@ -534,7 +613,7 @@ h2 {
         border-radius: 15px;
         gap: 5%;
 
-        .icon{
+        img{
             width: 200px;
             border: $border;
         }
@@ -576,7 +655,7 @@ h2 {
 }
 
 
-.table-admin {
+.table-admin-guide {
     width: 98%;
     margin: 20px auto;
     display: flex;
@@ -590,7 +669,82 @@ h2 {
     .table-header,
     .table-row {
         display: grid;
-        grid-template-columns: 5% 15% 35% 15% 15% 10%; 
+        justify-content: space-between;
+        grid-template-columns: 3% 10% 30% 10% 10% 25%; 
+        align-items: center;
+        padding: 15px;
+
+        p {
+            text-align: center;
+            padding: 5px;
+        }
+    }
+
+    .table-header {
+        background: $color-primary;
+        color: $color-background;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .table-row {
+        border-bottom: 1px solid $color-primary;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        p {
+            color: $color-text;
+        }
+
+       
+        p:nth-child(3) { 
+            text-align: left;
+            padding: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+       
+        div {
+            display: flex;
+            justify-content: center;
+
+            img {
+                width: 80px;
+                height: 80px;
+                border-radius: 5px;
+            }
+        }
+
+        
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+    }
+}
+
+
+.table-admin-category {
+    width: 98%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    background: $color-secondary;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba($color-primary, 0.3);
+    overflow: hidden;
+
+    
+    .table-header,
+    .table-row {
+        display: grid;
+        justify-content: space-between;
+        grid-template-columns: 5% 10% 15% 10% 25% ; 
         align-items: center;
         padding: 15px;
 

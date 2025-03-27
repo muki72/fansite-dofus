@@ -27,7 +27,7 @@ final class HomeController extends AbstractController
             'users' => $userRepository->findAll(),
             'guides' => $guideRepository->findAll(),
             'categories' => $categoryRepository->findAll(),
-            'postes' => $postRepository->findAll(),
+            'posts' => $postRepository->findAll(),
             'almanax' => json_decode(file_get_contents("https://api.dofusdu.de/dofus3/v1/fr/almanax/$date"))
         ]);
     }

@@ -4,10 +4,10 @@
 {% endblock %}
 
 {% block body %}
-<section class="profile-edit-section">
+<section class="edit-section">
 	<h1 class="title">Modifier mon profil</h1>
 
-	<div class="profile-edit-container">
+	<div class="edit-container">
 		{{ form_start(form) }}
 
 		<div class="form-group">
@@ -29,7 +29,7 @@
             <button type="submit" class="btn-submit">Modifier</button>
             {{ form_end(form) }}
 
-            <a href="{{ path('app_user_show', {'id': app.user.id}) }}" class="profile-edit-cancel">Annuler</a>
+            <a href="{{ path('app_user_show', {'id': app.user.id}) }}" class="edit-cancel">Annuler</a>
         </div>
     </section>
 {% endblock %}

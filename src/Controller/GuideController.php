@@ -61,7 +61,7 @@ final class GuideController extends AbstractController
             $entityManager->persist($guide);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_guide_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('guide/new.html.twig', [
@@ -100,7 +100,7 @@ final class GuideController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_guide_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('guide/edit.html.twig', [
@@ -117,6 +117,6 @@ final class GuideController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_guide_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
     }
 }

@@ -1,10 +1,11 @@
-
 {% block body %}
-	
+	<button class="btn-submit">
+		<a href="{{ path('app_guide_new') }}">Creer un Guide</a>
+	</button>
 
 	{% for guide in guides %}
 
-		<div class="table-admin">
+		<div class="table-admin-guide">
 			<div class="table-header">
 				<p>ID</p>
 				<p>Titre</p>
@@ -29,6 +30,8 @@
 					<button class="btn-submit">
 						<a href="{{ path('app_guide_edit', {'id': guide.id}) }}">Modifier</a>
 					</button>
+
+					{% include 'guide/_delete_form.html.twig' %}
 				</div>
 			</div>
 		</div>
@@ -40,7 +43,5 @@
 
 	{% endfor %}
 
-	<button class="btn-submit">
-		<a href="{{ path('app_guide_new') }}">Creer un Guide</a>
-	</button>
+
 {% endblock %}

@@ -1,13 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Category{% endblock %}
+{% block title %}New Category
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Category</h1>
+	<section class="edit-section">
+		<h1 class="title">creer une categorie</h1>
 
-    {{ include('category/_form.html.twig') }}
+		<div class="edit-container">
+			{{ form_start(form) }}
 
-        <button class="btn-submit">
-     <a href="{{ path('app_category_index') }}">back to list</a>
-    </button>
+			<div class="form-group">
+				{{ form_widget(form.title, {'attr': {'class': 'form-input', 'placeholder': 'titre'}}) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_widget(form.image, {'attr': {'class': 'form-input file-upload'}}) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_widget(form.date, {'attr': {'class': 'form-input', 'placeholder': 'date'}}) }}
+			</div>
+
+
+			<button type="submit" class="btn-submit">creer</button>
+			{{ form_end(form) }}
+
+			<a href="{{ path('app_dashboard') }}" class="edit-cancel">Annuler</a>
+		</div>
+	</section>
 {% endblock %}

@@ -1,10 +1,10 @@
-
-
 {% block body %}
-	
 
+	<button class="btn-submit">
+		<a href="{{ path('app_category_new') }}">Créer une catégorie</a>
+	</button>
 	{% for category in categories %}
-		<div class="table-admin">
+		<div class="table-admin-category">
 			<div class="table-header">
 				<p>ID</p>
 				<p>Titre</p>
@@ -27,6 +27,9 @@
 					<button class="btn-submit">
 						<a href="{{ path('app_category_edit', {'id': category.id}) }}">Modifier</a>
 					</button>
+
+					{% include 'category/_delete_form.html.twig' %}
+
 				</div>
 			</div>
 		</div>
@@ -34,8 +37,5 @@
 		<p>Aucune catégorie disponible</p>
 	{% endfor %}
 
-	
-	<button class="btn-submit">
-		<a href="{{ path('app_category_new') }}">Créer une catégorie</a>
-	</button>
+
 {% endblock %}

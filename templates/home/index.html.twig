@@ -10,9 +10,6 @@
 		{% if is_granted('ROLE_ADMIN') %}
 			<div class="nav-btn">
 				<button class="btn-submit">
-					<a href="{{ path('app_post_index') }}">Post</a>
-				</button>
-				<button class="btn-submit">
 					<a href="{{ path('app_reply_index') }}">Reply</a>
 				</button>
 				<button class="btn-submit">
@@ -57,7 +54,7 @@
 	</div>
 
 	<div class="post-home">
-		<div class="post-background">
+		<div class="post-sort-background">
 			<h2 class="title">postes</h2>
 			<h3>trier par :</h3>
 			<div class="sort-btn">
@@ -66,7 +63,11 @@
 			</div>
 		</div>
 
-
 	</div>
+	<button class="btn-submit">
+		<a href="{{ path('app_post_new') }}">Creer un Post</a>
+	</button>
+	{% include 'post/index.html.twig' %}
+
 
 {% endblock %}
