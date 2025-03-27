@@ -6,14 +6,18 @@
 
 			<div class="post-head">
 
-				<p>{{ post.voteScore }}</p>
+				<div class="post-vote">
+					<button class="upvote" data-post-id="{{ post.id }}">▲</button>
+					<p id="score-{{ post.id }}">{{ post.voteScore }}</p>
+					<button class="downvote" data-post-id="{{ post.id }}">▼</button>
+				</div>
 				<h2 class="title">{{ post.title }}</h2>
-				<div class="post-user">
+				<div class="message-user">
 
-					<a href="{{ path('app_user_show', {'id': post.user.id}) }}"><img src="{{ asset('uploads/images/' ~ post.user.img) }}"></a>
 					<a href="{{ path('app_user_show', {'id': post.user.id}) }}">
 						<p>{{ post.user.userName }}</p>
 					</a>
+					<a href="{{ path('app_user_show', {'id': post.user.id}) }}"><img src="{{ asset('uploads/images/' ~ post.user.img) }}"></a>
 
 				</div>
 
@@ -21,20 +25,42 @@
 			</div>
 
 			<div class="post-body">
-				<img src="{{ asset('uploads/images/' ~ post.img) }}">
+				{% if post.img is not null %}
+					<img src="{{ asset('uploads/images/' ~ post.img) }}">
+				{% endif %}
 				<p>{{ post.text }}</p>
+			</div>
+
+
+			<div class="post-date">
 				<p>{{ post.date ? post.date|date("d-m-Y") : '' }}</p>
 			</div>
 
+
+			<div class="post-actions">
+				<button class="btn-submit">Reply</button>
+				{% if is_granted('ROLE_ADMIN') %}
+					{{ include('post/_delete_form.html.twig') }}
+				{% endif %}
+			</div>
+
+			<article class="reply-container">
+
+				{% for reply in post.replies %}
+					<div class="message-user">
+						<a href="{{ path('app_user_show', {'id': reply.user.id}) }}">
+							<p>{{ post.user.userName }}</p>
+						</a>
+						<a href="{{ path('app_user_show', {'id': reply.user.id}) }}"><img src="{{ asset('uploads/images/' ~ reply.user.img) }}"></a>
+					</div>
+					<p>{{ reply.text }}</p>
+				{% endfor %}
+
+			</article>
 		</article>
 
 
-		{# <td>
-															<a href="{{ path('app_post_show', {'id': post.id}) }}">show</a>
-															<a href="{{ path('app_post_edit', {'id': post.id}) }}">edit</a>
-														</td> #}
-
 	{% endfor %}
 
-
+	<script src="{{ asset('js/updateScore.js') }}"></script>
 {% endblock %}

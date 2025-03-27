@@ -9,6 +9,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 
 class ReplyType extends AbstractType
 {
@@ -16,18 +18,23 @@ class ReplyType extends AbstractType
     {
         $builder
             ->add('text')
-            ->add('img')
-            ->add('voteScore')
-            ->add('date', null, [
-                'widget' => 'single_text',
+            ->add('image', FileType::class, [
+                'label' => 'image du poste',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '5000k',
+                        'mimeTypes' => [
+                            'image/*',
+                        ],
+                        'mimeTypesMessage' => 'Image trop lourde',
+                    ])
+                ],
             ])
             ->add('post', EntityType::class, [
                 'class' => Post::class,
-                'choice_label' => 'id',
-            ])
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id',
+                'choice_label' => 'title',
             ])
         ;
     }

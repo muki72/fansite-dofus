@@ -18,7 +18,6 @@ class PostType extends AbstractType
         $builder
             ->add('title')
             ->add('text')
-            ->add('voteScore')
             ->add('image', FileType::class, [
                 'label' => 'image du poste',
                 'mapped' => false,
@@ -33,9 +32,7 @@ class PostType extends AbstractType
                     ])
                 ],
             ])
-            ->add('date', null, [
-                'widget' => 'single_text',
-            ])
+            
             
         ;
     }

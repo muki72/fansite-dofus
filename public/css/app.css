@@ -135,7 +135,7 @@ h2 {
 }
 .nav-bar .nav-login .icon {
   width: 80px;
-  border-radius: 90px;
+  border-radius: 15px;
   border: solid 1px #00E5FF;
 }
 .nav-bar .nav-login .icon:hover {
@@ -483,28 +483,45 @@ h2 {
   background-color: #072D38;
   border: solid 1px #00E5FF;
   border-radius: 15px;
-  padding: 1% 2% 1% 2%;
+  padding: 1%;
 }
 .post-container .post-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.post-container .post-head .post-user {
+.post-container .post-head .post-vote {
+  text-align: center;
+  font-size: 1.5em;
+}
+.post-container .post-head .post-vote p {
+  margin: 10px;
+  font-weight: bold;
+}
+.post-container .post-head .post-vote button {
+  scale: 0.8;
+}
+.post-container .post-head .title {
+  transform: translateX(45px);
+}
+.post-container .message-user {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   color: #00E5FF;
+  font-size: 1.5em;
 }
-.post-container .post-head .post-user a:hover {
+.post-container .message-user a:hover {
   text-decoration: underline;
   text-decoration-color: #00E5FF;
 }
-.post-container .post-head .post-user img {
-  width: 80px;
+.post-container .message-user img {
+  width: 1.5em;
+  border-radius: 15px;
+  margin-left: 10px;
+  border: 1px solid transparent;
 }
-.post-container .post-head .post-user img:hover {
+.post-container .message-user img:hover {
   border: solid 1px #f700ff;
 }
 .post-container .post-body {
@@ -515,6 +532,29 @@ h2 {
 }
 .post-container .post-body img {
   width: 50%;
+  border-radius: 15px;
+  box-shadow: #00E5FF 0px 2px 5px 0px, #00E5FF 0px 1px 1px 0px;
+}
+.post-container .post-body p {
+  box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.75) inset;
+  border-radius: 15px;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+}
+.post-container .post-date {
+  display: flex;
+  justify-content: end;
+}
+.post-container .post-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.reply-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
 }
 
 .user-container {
