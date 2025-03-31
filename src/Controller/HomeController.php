@@ -22,12 +22,12 @@ final class HomeController extends AbstractController
     public function index(GuideRepository $guideRepository, PostRepository $postRepository, CategoryRepository $categoryRepository, UserRepository $userRepository): Response
     {
         $date = date("Y-m-d");
+        $posts = $postRepository->findAll();
+        
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
-            'users' => $userRepository->findAll(),
-            'guides' => $guideRepository->findAll(),
             'categories' => $categoryRepository->findAll(),
-            'posts' => $postRepository->findAll(),
+            'posts' => $posts,
             'almanax' => json_decode(file_get_contents("https://api.dofusdu.de/dofus3/v1/fr/almanax/$date"))
         ]);
     }

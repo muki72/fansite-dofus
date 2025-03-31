@@ -551,6 +551,14 @@ h2 {
   gap: 10px;
 }
 
+.active-up-vote {
+  background-color: green;
+}
+
+.active-down-vote {
+  background-color: red;
+}
+
 .reply-container {
   display: flex;
   flex-direction: column;

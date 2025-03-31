@@ -1,13 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Post{% endblock %}
+{% block title %}New Post
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Post</h1>
+	<h1>Create new Post</h1>
 
-    {{ include('post/_form.html.twig') }}
+	{{ include('post/_form.html.twig') }}
 
-        <button class="btn-submit">
-     <a href="{{ path('app_post_index') }}">back to list</a>
-    </button>
+
 {% endblock %}

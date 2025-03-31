@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Reply;
+use App\Entity\Post;
 use App\Form\ReplyType;
 use App\Repository\ReplyRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,10 +26,11 @@ final class ReplyController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_reply_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    #[Route('/new/{id}', name: 'app_reply_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, Post $post): Response
     {
         $reply = new Reply();
+        $reply->setPost($post);
         $form = $this->createForm(ReplyType::class, $reply);
         $form->handleRequest($request);
 

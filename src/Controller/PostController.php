@@ -104,48 +104,55 @@ final class PostController extends AbstractController
         return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/{id}/score', name: 'app_post_score', methods: ['POST'])]
+
+
+
+    #[Route('/{id}/vote', name: 'app_post_score', methods: ['POST'])]
     public function updateScore(Request $request, Post $post, EntityManagerInterface $entityManager, Security $security): JsonResponse
     {
-        //  recupere l'utilisateur connecté
-        $user = $security->getUser(); 
+
+        $user = $security->getUser();
         if (!$user) {
-            return new JsonResponse(['error' => 'Utilisateur non connecté'], Response::HTTP_FORBIDDEN);
+            return new JsonResponse(['error' => 'Unauthorized'], Response::HTTP_UNAUTHORIZED);
+        }
+        $data = json_decode($request->getContent(), true);
+        $voteValue = $data['vote'] ?? null; // Récupe du vote (1 ou 0 ou -1)
+
+        if (!in_array($voteValue, [1, 0, -1])) {
+            return new JsonResponse(['error' => 'Invalid vote'], Response::HTTP_BAD_REQUEST);
         }
 
-        //  récupére la valeur envoyé en AJAX (upvote ou downvote)
-        $data = json_decode($request->getContent(), true);
-        //  +1 pour upvote -1 pour downvote
-        $voteValue = $data['vote'] ?? 0; 
 
-        // Vérifie si l'utilisateur a déjà voté
-        $existingVote = $entityManager->getRepository(Vote::class)->findOneBy([
-            'user' => $user,
-            'post' => $post,
-        ]);
+
+        $voteRepository = $entityManager->getRepository(Vote::class);
+        $existingVote = $voteRepository->findOneBy(['user' => $user, 'post' => $post]);
 
         if ($existingVote) {
-            // Si l'utilisateur clique sur le même vote, il annule son vote
+            // Annule vote si user clique sur le meme bouton
+
             if ($existingVote->getValue() === $voteValue) {
                 $entityManager->remove($existingVote);
-                $voteValue = 0; // Annulation du vote
+                $post->setVoteScore($post->getVoteScore() - $voteValue);
             } else {
+                // Mettre à jour le vote
+
+                $post->setVoteScore($post->getVoteScore() - $existingVote->getValue() + $voteValue);
                 $existingVote->setValue($voteValue);
             }
         } else {
-            // Si aucun vote existant, créer un nouveau vote
+
             $vote = new Vote();
             $vote->setUser($user);
             $vote->setPost($post);
             $vote->setValue($voteValue);
             $entityManager->persist($vote);
+            $post->setVoteScore($post->getVoteScore() + $voteValue);
         }
+        $entityManager->persist($post);
 
-        // Recalculer le score total des votes pour ce post
-        $totalVotes = $entityManager->getRepository(Vote::class)->getPostScore($post);
-        $post->setVoteScore($totalVotes);
+
         $entityManager->flush();
 
-        return new JsonResponse(['newScore' => $totalVotes]);
+        return new JsonResponse(['newScore' => $post->getVoteScore()]);
     }
 }

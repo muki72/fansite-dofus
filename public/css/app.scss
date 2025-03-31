@@ -91,6 +91,8 @@ h2 {
         transform: scale(0.98);
         box-shadow: 0 2px 6px rgba($color-primary, 0.4);
     }
+
+    
 }
 
 .btn-delete{
@@ -628,6 +630,13 @@ h2 {
         display: flex;
         gap: 10px;
     }
+}
+
+.active-up-vote{
+    background-color: green;
+}
+.active-down-vote{
+    background-color: red;
 }
 
 //reply

@@ -189,4 +189,19 @@ class Post
 
         return $this;
     }
+
+    public function getUserVote(?User $user): int
+    {
+        if (!$user) {
+            return 0;
+        }
+
+        foreach ($this->votes as $vote) {
+            if ($vote->getUser() === $user) {
+                return $vote->getValue();
+            }
+        }
+
+        return 0;
+    }
 }

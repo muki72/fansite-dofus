@@ -32,10 +32,7 @@ class ReplyType extends AbstractType
                     ])
                 ],
             ])
-            ->add('post', EntityType::class, [
-                'class' => Post::class,
-                'choice_label' => 'title',
-            ])
+            
         ;
     }
 
