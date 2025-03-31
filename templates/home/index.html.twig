@@ -58,8 +58,12 @@
 			<h2 class="title">postes</h2>
 			<h3>trier par :</h3>
 			<div class="sort-btn">
-				<button class="btn-submit">Chronologique</button>
-				<button class="btn-submit">Score de vote</button>
+				<a class="btn-submit" href="{{ path('home', {sort: 'date'}) }}" class="btn {% if currentSort == 'date' %}active{% endif %}">
+					Date
+				</a>
+				<a class="btn-submit" href="{{ path('home', {sort: 'votes'}) }}" class="btn {% if currentSort == 'votes' %}active{% endif %}">
+					Vote
+				</a>
 			</div>
 		</div>
 
