@@ -97,9 +97,10 @@ final class PostController extends AbstractController
     public function delete(Request $request, Post $post, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $post->getId(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($post);
-            $entityManager->flush();
+             $entityManager->remove($post);
+             $entityManager->flush();
         }
+        
 
         return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
     }

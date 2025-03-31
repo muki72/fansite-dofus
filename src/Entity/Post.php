@@ -34,7 +34,8 @@ class Post
     /**
      * @var Collection<int, Reply>
      */
-    #[ORM\OneToMany(targetEntity: Reply::class, mappedBy: 'post')]
+    // "cascade: ['remove'], orphanRemoval: true" supprime les enfants du post a ça supression 
+    #[ORM\OneToMany(targetEntity: Reply::class, mappedBy: 'post', cascade: ['remove'])]
     private Collection $replies;
 
     #[ORM\ManyToOne(inversedBy: 'posts')]
@@ -43,7 +44,7 @@ class Post
     /**
      * @var Collection<int, Vote>
      */
-    #[ORM\OneToMany(targetEntity: Vote::class, mappedBy: 'post')]
+    #[ORM\OneToMany(targetEntity: Vote::class, mappedBy: 'post', cascade: ['remove'])]
     private Collection $votes;
 
     public function __construct()

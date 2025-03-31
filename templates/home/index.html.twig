@@ -58,10 +58,10 @@
 			<h2 class="title">postes</h2>
 			<h3>trier par :</h3>
 			<div class="sort-btn">
-				<a class="btn-submit" href="{{ path('home', {sort: 'date'}) }}" class="btn {% if currentSort == 'date' %}active{% endif %}">
+				<a class="btn-submit" href="{{ path('home', {sort: 'date'}) }}"  {% if currentSort == 'date' %}active{% endif %}">
 					Date
 				</a>
-				<a class="btn-submit" href="{{ path('home', {sort: 'votes'}) }}" class="btn {% if currentSort == 'votes' %}active{% endif %}">
+				<a class="btn-submit" href="{{ path('home', {sort: 'votes'}) }}"  {% if currentSort == 'votes' %}active{% endif %}">
 					Vote
 				</a>
 			</div>

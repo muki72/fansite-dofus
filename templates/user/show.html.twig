@@ -40,20 +40,80 @@
 		</div>
 
 		<div class="user-post">
-			<h2>Post et réponse de
+			<h2>Postes de
 				{{ user.userName }}</h2>
-			<div class="post">
-				<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic, ut odit tempore, molestias ex ducimus illum nihil pariatur ab aliquam fugit ipsam. Hic sunt nihil dolores ratione? Accusantium, est nobis?</p>
-			</div>
-			<div class="post">
-				<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic, ut odit tempore, molestias ex ducimus illum nihil pariatur ab aliquam fugit ipsam. Hic sunt nihil dolores ratione? Accusantium, est nobis?</p>
-			</div>
-			<div class="post">
-				<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic, ut odit tempore, molestias ex ducimus illum nihil pariatur ab aliquam fugit ipsam. Hic sunt nihil dolores ratione? Accusantium, est nobis?</p>
-			</div>
-			<div class="post">
-				<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic, ut odit tempore, molestias ex ducimus illum nihil pariatur ab aliquam fugit ipsam. Hic sunt nihil dolores ratione? Accusantium, est nobis?</p>
-			</div>
+
+
+			{% for post in user.posts %}
+				<article class="post-container">
+
+					<div class="post-head">
+
+						<div class="post-vote">
+							<button class="upvote btn-submit {% if post.getUserVote(app.user) == 1 %}active-up-vote{% endif %}" data-post-id="{{ post.id }}">
+								▲
+							</button>
+							<p id="score-{{ post.id }}">{{ post.voteScore }}</p>
+							<button class="downvote btn-submit {% if post.getUserVote(app.user) == -1 %}active-down-vote{% endif %}" data-post-id="{{ post.id }}">
+								▼
+							</button>
+						</div>
+						<h2 class="title">{{ post.title }}</h2>
+						<div class="message-user">
+
+							<a href="{{ path('app_user_show', {'id': post.user.id}) }}">
+								<p>{{ post.user.userName }}</p>
+							</a>
+							<a href="{{ path('app_user_show', {'id': post.user.id}) }}"><img src="{{ asset('uploads/images/' ~ post.user.img) }}"></a>
+
+						</div>
+
+
+					</div>
+
+					<div class="post-body">
+						{% if post.img is not null %}
+							<img src="{{ asset('uploads/images/' ~ post.img) }}">
+						{% endif %}
+						<p>{{ post.text }}</p>
+					</div>
+
+
+					<div class="post-date">
+						<p>{{ post.date ? post.date|date("d-m-Y") : '' }}</p>
+					</div>
+
+
+					<div class="post-actions">
+
+						<a class="btn-submit" href="{{ path('app_reply_new', {'id': post.id}) }}">reply</a>
+
+						{% if is_granted('ROLE_ADMIN') %}
+							{{ include('post/_delete_form.html.twig') }}
+						{% endif %}
+					</div>
+
+					<article class="reply-container">
+
+						{% for reply in post.replies %}
+							<div class="message-user">
+								<a href="{{ path('app_user_show', {'id': reply.user.id}) }}">
+									<p>{{ reply.user.userName }}</p>
+								</a>
+								<a href="{{ path('app_user_show', {'id': reply.user.id}) }}"><img src="{{ asset('uploads/images/' ~ reply.user.img) }}"></a>
+							</div>
+							<div class="post-body">
+								<p>{{ reply.text }}</p>
+								{{ reply.date ? reply.date|date("d-m-Y") : '' }}
+							</div>
+						{% endfor %}
+
+					</article>
+				</article>
+
+			{% endfor %}
+
+
 		</div>
 	</div>
 {% endblock %}

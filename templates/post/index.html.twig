@@ -49,20 +49,26 @@
 					{{ include('post/_delete_form.html.twig') }}
 				{% endif %}
 			</div>
+			{% if post.replies is not empty %}
+				<article class="reply-container">
+					<h2 class="title">Réponses</h2>
 
-			<article class="reply-container">
 
-				{% for reply in post.replies %}
-					<div class="message-user">
-						<a href="{{ path('app_user_show', {'id': reply.user.id}) }}">
-							<p>{{ reply.user.userName }}</p>
-						</a>
-						<a href="{{ path('app_user_show', {'id': reply.user.id}) }}"><img src="{{ asset('uploads/images/' ~ reply.user.img) }}"></a>
-					</div>
-					<p>{{ reply.text }}</p>
-				{% endfor %}
+					{% for reply in post.replies %}
+						<div class="message-user">
+							<a href="{{ path('app_user_show', {'id': reply.user.id}) }}">
+								<p>{{ reply.user.userName }}</p>
+							</a>
+							<a href="{{ path('app_user_show', {'id': reply.user.id}) }}"><img src="{{ asset('uploads/images/' ~ reply.user.img) }}"></a>
+						</div>
+						<div class="post-body">
+							<p>{{ reply.text }}</p>
+							{{ reply.date ? reply.date|date("d-m-Y") : '' }}
+						</div>
+					{% endfor %}
 
-			</article>
+				</article>
+			{% endif %}
 		</article>
 
 
