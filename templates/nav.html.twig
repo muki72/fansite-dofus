@@ -4,15 +4,19 @@
 	</div>
 
 	<div class="nav-login">
+		{% if is_granted('ROLE_ADMIN') %}
+			<button class="btn-submit">
+				<a href="{{ path('app_dashboard') }}">dashboard</a>
+			</button>
+		{% endif %}
 		{% if app.user %}
 			{% if app.user.img %}
 				<a href="{{ path('app_user_show', {'id': app.user.id}) }}">
 					<img src="{{ asset('uploads/images/' ~ app.user.img) }}" class="icon">
 				</a>
 			{% else %}
-				<button class="btn-submit">
-					<a href="{{ path('app_user_show', {'id': app.user.id}) }}">{{ app.user.userName }}</a>
-				</button>
+				<a href="{{ path('app_user_show', {'id': app.user.id}) }}">
+					<img src="..\images\user_img.png" class="icon"></a>
 			{% endif %}
 		{% endif %}
 

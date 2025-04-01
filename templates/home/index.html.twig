@@ -7,20 +7,27 @@
 
 
 	<div class="item-container">
-		{% if is_granted('ROLE_ADMIN') %}
-			<div class="nav-btn">
-				<button class="btn-submit">
-					<a href="{{ path('app_reply_index') }}">Reply</a>
-				</button>
-				<button class="btn-submit">
-					<a href="{{ path('app_dashboard') }}">dashboard</a>
-				</button>
-				<button class="btn-submit">
-					<a href="{{ path('app_portals') }}">Portals</a>
-				</button>
+		<div class="item-home-card">
+			<h2>utilisateurs</h2>
+			<div class="item-users-card">
+				{% for user in users %}
+					{% if user.img %}
+						<a href="{{ path('app_user_show', {'id': user.id}) }}">
+							<img src="{{ asset('uploads/images/' ~ user.img) }}" class="home-icon"></a>
+					{% else %}
+						<a href="{{ path('app_user_show', {'id': user.id}) }}">
+							<img src="images\user_img.png" class="home-icon"></a>
+					{% endif %}
+				{% endfor %}
 			</div>
-		{% endif %}
-		<div class="item-card">
+		</div>
+		<div class="item-home-card ">
+			<a href="{{ path('app_portals') }}">
+				<h2>Portails</h2>
+				<div class="portal-background"></div>
+			</a>
+		</div>
+		<div class="item-home-card">
 			<a href="{{ path('app_almanax') }}">
 				<h2>Almanax du jour</h2>
 				<h3>{{ almanax.tribute.item.name }}
@@ -33,7 +40,6 @@
 	</div>
 
 	<div class="category-background">
-
 		<h2 class="title">guides</h2>
 		<div class="categories-home">
 
@@ -58,10 +64,10 @@
 			<h2 class="title">postes</h2>
 			<h3>trier par :</h3>
 			<div class="sort-btn">
-				<a class="btn-submit" href="{{ path('home', {sort: 'date'}) }}"  {% if currentSort == 'date' %}active{% endif %}">
+				<a class="btn-submit" href="{{ path('home', {sort: 'date'}) }}" {% if currentSort == 'date' %} active {% endif %} ">
 					Date
 				</a>
-				<a class="btn-submit" href="{{ path('home', {sort: 'votes'}) }}"  {% if currentSort == 'votes' %}active{% endif %}">
+				<a class="btn-submit" href="{{ path('home', {sort: 'votes'}) }}" {% if currentSort == 'votes' %} active {% endif %} ">
 					Vote
 				</a>
 			</div>

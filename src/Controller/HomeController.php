@@ -19,7 +19,7 @@ use App\Entity\User;
 final class HomeController extends AbstractController
 {
     #[Route('/{sort?}', name: 'home', requirements: ['sort' => 'date|votes'])]
-    public function index(PostRepository $postRepository, CategoryRepository $categoryRepository, $sort = 'date'): Response
+    public function index(PostRepository $postRepository, UserRepository $userRepository, CategoryRepository $categoryRepository, $sort = 'date'): Response
     {
         $date = date("Y-m-d");
         // vérifier les paramètres de tri
@@ -33,6 +33,7 @@ final class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'categories' => $categoryRepository->findAll(),
+            'users' => $userRepository->findAll(),
             'posts' => $posts,
             'almanax' => json_decode(file_get_contents("https://api.dofusdu.de/dofus3/v1/fr/almanax/$date")),
             'currentSort' => $sort

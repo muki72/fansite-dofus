@@ -15,11 +15,11 @@
 						<img src="{{ asset('uploads/images/' ~ user.img) }}">
 					</a>
 				{% else %}
-					{% if app.user is defined and app.user is not null and app.user.id == user.id %}
-						<button class="btn-submit">
-							<a href="{{ path('app_user_edit', {'id': user.id}) }}">"AJOUTE UNE IMAGE"</a>
-						</button>
-					{% endif %}
+
+
+					<a href="{{ path('app_user_show', {'id': user.id}) }}">
+						<img src="..\images\user_img.png" class="home"></a>
+
 				{% endif %}
 
 				{% if app.user is defined and app.user is not null and app.user.id == user.id %}
@@ -41,7 +41,8 @@
 
 		<div class="user-post">
 			<h2>Postes de
-				{{ user.userName }}</h2>
+				{{ user.userName }}
+				:</h2>
 
 
 			{% for post in user.posts %}
@@ -110,6 +111,13 @@
 
 					</article>
 				</article>
+
+			{% else %}
+
+				<h2 class="title">il n'y a pas de post ici</h2>
+				{% if app.user is defined and app.user is not null and app.user.id == user.id %}
+					<a class="btn-submit" href="{{ path('app_post_new') }}">Creer un Post</a>
+				{% endif %}
 
 			{% endfor %}
 
