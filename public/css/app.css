@@ -539,6 +539,7 @@ h2 {
 }
 .post-container .message-user img {
   width: 1.5em;
+  height: 1.5em;
   border-radius: 15px;
   margin-left: 10px;
   border: 1px solid transparent;

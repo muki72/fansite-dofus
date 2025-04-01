@@ -112,6 +112,8 @@ final class GuideController extends AbstractController
     #[Route('/{id}', name: 'app_guide_delete', methods: ['POST'])]
     public function delete(Request $request, Guide $guide, EntityManagerInterface $entityManager): Response
     {
+        //securité pour verifier le role du visiteur
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         if ($this->isCsrfTokenValid('delete' . $guide->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($guide);
             $entityManager->flush();

@@ -64,11 +64,13 @@
 			<h2 class="title">postes</h2>
 			<h3>trier par :</h3>
 			<div class="sort-btn">
-				<a class="btn-submit" href="{{ path('home', {sort: 'date'}) }}" {% if currentSort == 'date' %} active {% endif %} ">
+				<a class="btn-submit" href="{{ path('home', {sort: 'date'}) }} {% if currentSort == 'date' %} active {% endif %} ">
 					Date
+					<i class="fa-solid fa-calendar"></i>
 				</a>
-				<a class="btn-submit" href="{{ path('home', {sort: 'votes'}) }}" {% if currentSort == 'votes' %} active {% endif %} ">
+				<a class="btn-submit" href="{{ path('home', {sort: 'votes'}) }} {% if currentSort == 'votes' %} active {% endif %} ">
 					Vote
+					<i class="fa-solid fa-thumbs-up"></i>
 				</a>
 			</div>
 		</div>
