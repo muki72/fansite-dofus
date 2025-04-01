@@ -7,13 +7,23 @@
 			<div class="post-head">
 
 				<div class="post-vote">
-					<button class="upvote btn-submit {% if post.getUserVote(app.user) == 1 %}active-up-vote{% endif %}" data-post-id="{{ post.id }}">
-						▲
-					</button>
-					<p id="score-{{ post.id }}">{{ post.voteScore }}</p>
-					<button class="downvote btn-submit {% if post.getUserVote(app.user) == -1 %}active-down-vote{% endif %}" data-post-id="{{ post.id }}">
-						▼
-					</button>
+					{% if is_granted('ROLE_USER') %}
+						<button class="upvote btn-submit {% if post.getUserVote(app.user) == 1 %}active-up-vote{% endif %}" data-post-id="{{ post.id }}">
+							▲
+						</button>
+						<p id="score-{{ post.id }}">{{ post.voteScore }}</p>
+						<button class="downvote btn-submit {% if post.getUserVote(app.user) == -1 %}active-down-vote{% endif %}" data-post-id="{{ post.id }}">
+							▼
+						</button>
+					{% else %}
+						<a class="btn-submit" href="{{ path('app_login') }}">
+							▲
+						</a>
+						<p id="score-{{ post.id }}">{{ post.voteScore }}</p>
+						<a class="btn-submit" href="{{ path('app_login') }}">
+							▼
+						</a>
+					{% endif %}
 				</div>
 				<h2 class="title">{{ post.title }}</h2>
 				<div class="message-user">
