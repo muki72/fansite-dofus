@@ -21,6 +21,8 @@ final class ReplyController extends AbstractController
     #[Route(name: 'app_reply_index', methods: ['GET'])]
     public function index(ReplyRepository $replyRepository): Response
     {
+        //securité pour verifier le role du visiteur
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         return $this->render('reply/index.html.twig', [
             'replies' => $replyRepository->findAll(),
         ]);
@@ -29,6 +31,8 @@ final class ReplyController extends AbstractController
     #[Route('/new/{id}', name: 'app_reply_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, Post $post): Response
     {
+        //securité pour verifier le role du visiteur
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $reply = new Reply();
         $reply->setPost($post);
         $form = $this->createForm(ReplyType::class, $reply);
@@ -76,6 +80,8 @@ final class ReplyController extends AbstractController
     #[Route('/{id}/edit', name: 'app_reply_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Reply $reply, EntityManagerInterface $entityManager): Response
     {
+        //securité pour verifier le role du visiteur
+    $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(ReplyType::class, $reply);
         $form->handleRequest($request);
 

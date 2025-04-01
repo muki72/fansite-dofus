@@ -15,19 +15,6 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 #[Route('/user')]
 final class UserController extends AbstractController
 {
-    #[Route(name: 'app_user_index', methods: ['GET'])]
-    public function index(UserRepository $userRepository): Response
-    {
-        //securité pour verifier le role du visiteur
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
-
-        return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findAll(),
-        ]);
-    }
-
-
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
     public function show(User $user): Response
     {

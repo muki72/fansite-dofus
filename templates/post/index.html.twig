@@ -57,6 +57,8 @@
 
 				{% if is_granted('ROLE_ADMIN') %}
 					{{ include('post/_delete_form.html.twig') }}
+				{% elseif app.user.id is same as(post.user.id) %}
+					{{ include('post/_delete_form.html.twig') }}
 				{% endif %}
 			</div>
 			{% if post.replies is not empty %}
@@ -72,11 +74,18 @@
 							<a href="{{ path('app_user_show', {'id': reply.user.id}) }}"><img src="{{ asset('uploads/images/' ~ reply.user.img) }}"></a>
 						</div>
 						<div class="post-body">
+							{% if reply.img is not null %}
+								<img src="{{ asset('uploads/images/' ~ reply.img) }}">
+							{% endif %}
 							<p>{{ reply.text }}</p>
 							{{ reply.date ? reply.date|date("d-m-Y") : '' }}
 						</div>
+						{% if is_granted('ROLE_ADMIN') %}
+							{{ include('reply/_delete_form.html.twig') }}
+						{% elseif app.user.id is same as(reply.user.id) %}
+							{{ include('reply/_delete_form.html.twig') }}
+						{% endif %}
 					{% endfor %}
-
 				</article>
 			{% endif %}
 		</article>

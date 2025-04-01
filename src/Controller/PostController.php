@@ -19,17 +19,12 @@ use App\Entity\Vote;
 #[Route('/post')]
 final class PostController extends AbstractController
 {
-    // #[Route(name: 'app_post_index', methods: ['GET'])]
-    // public function index(PostRepository $postRepository): Response
-    // {
-    //     return $this->render('post/index.html.twig', [
-    //         'posts' => $postRepository->findAll(),
-    //     ]);
-    // }
-
+   
     #[Route('/new', name: 'app_post_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
+        //securité pour verifier le role du visiteur
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
@@ -67,17 +62,12 @@ final class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_post_show', methods: ['GET'])]
-    public function show(Post $post): Response
-    {
-        return $this->render('post/show.html.twig', [
-            'post' => $post,
-        ]);
-    }
 
     #[Route('/{id}/edit', name: 'app_post_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Post $post, EntityManagerInterface $entityManager): Response
     {
+        //securité pour verifier le role du visiteur
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
@@ -96,6 +86,8 @@ final class PostController extends AbstractController
     #[Route('/{id}', name: 'app_post_delete', methods: ['POST'])]
     public function delete(Request $request, Post $post, EntityManagerInterface $entityManager): Response
     {
+        //securité pour verifier le role du visiteur
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         if ($this->isCsrfTokenValid('delete' . $post->getId(), $request->getPayload()->getString('_token'))) {
              $entityManager->remove($post);
              $entityManager->flush();

@@ -13,7 +13,7 @@ final class PortalsController extends AbstractController
     public function index(HttpClientInterface $httpClient): Response
     {
         // blacklist
-        $blacklistedServers = ['beta_1', 'dakal_1', 'dakal_2', 'dakal_3', 'dakal_4', 'dakal_5', 'dakal_6', 'dakal_7', 'dakal_8', 'dakal_9', 'dakal_10', 'dakal_11', 'dakal_12'];
+        $blacklistedServers = ['beta_1'];
 
         //list des servers
         $response = $httpClient->request('GET', 'https://api.dofus-portals.fr/internal/v1/servers');
@@ -21,7 +21,7 @@ final class PortalsController extends AbstractController
         $servers = json_decode($content, true);
 
         // Filtre servers blacklist
-        $filteredServers = array_filter($servers, function($server) use ($blacklistedServers) {
+        $filteredServers = array_filter($servers, function ($server) use ($blacklistedServers) {
             return !in_array($server['id'], $blacklistedServers);
         });
 
