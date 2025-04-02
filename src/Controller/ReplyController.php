@@ -18,16 +18,6 @@ use \DateTimeImmutable;
 #[Route('/reply')]
 final class ReplyController extends AbstractController
 {
-    #[Route(name: 'app_reply_index', methods: ['GET'])]
-    public function index(ReplyRepository $replyRepository): Response
-    {
-        //securité pour verifier le role du visiteur
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-        return $this->render('reply/index.html.twig', [
-            'replies' => $replyRepository->findAll(),
-        ]);
-    }
-
     #[Route('/new/{id}', name: 'app_reply_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, Post $post): Response
     {

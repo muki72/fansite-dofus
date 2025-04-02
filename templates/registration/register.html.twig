@@ -5,7 +5,7 @@
 
 {% block body %}
 	<section class="form-section">
-		<h1 class="form-title">Register</h1>
+		<h1 class="form-title">S'inscrire</h1>
 
 		{{ form_start(registrationForm, {'attr': {'class': 'form-container'}}) }}
 
@@ -28,7 +28,7 @@
 
 	<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-	<button type="submit" class="form-btn">Register</button>
+	<button type="submit" class="form-btn">S'inscrire</button>
 
 	{{ form_end(registrationForm) }}
 </section>{% endblock %}

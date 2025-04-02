@@ -39,7 +39,7 @@
 	</div>
 
 	<div class="category-background">
-		<h2 class="title">guides</h2>
+		<h2 class="title" id="guides">guides</h2>
 		<div class="categories-home">
 
 
@@ -60,14 +60,14 @@
 
 	<div class="post-home">
 		<div class="post-sort-background">
-			<h2 class="title">postes</h2>
+			<h2 class="title" id="postes">postes</h2>
 			<h3>trier par :</h3>
 			<div class="sort-btn">
-				<a href="{{ path('home', {sort: 'date'}) }}" class="btn-submit{% if currentSort == 'date' %} active{% endif %}">
+				<a href="{{ path('home', {sort: 'date'}) }}#postes" class="btn-submit{% if currentSort == 'date' %} active{% endif %}">
 					Date
 					<i class="fa-solid fa-calendar"></i>
 				</a>
-				<a href="{{ path('home', {sort: 'votes'}) }}" class="btn-submit{% if currentSort == 'votes' %} active{% endif %}">
+				<a href="{{ path('home', {sort: 'votes'}) }}#postes" class="btn-submit{% if currentSort == 'votes' %} active{% endif %}">
 					Vote
 					<i class="fa-solid fa-thumbs-up"></i>
 				</a>

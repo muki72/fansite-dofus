@@ -116,7 +116,7 @@ h2 {
 .nav-bar {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 98%;
   height: 100px;
   border-radius: 15px;
@@ -124,11 +124,6 @@ h2 {
   border: solid 1px #00E5FF;
   padding-right: 30px;
   position: relative;
-}
-.nav-bar .logo-wrapper {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
 }
 .nav-bar .logo-wrapper a img {
   padding-top: 25px;
@@ -139,11 +134,8 @@ h2 {
   scale: 1.05;
 }
 .nav-bar .nav-login {
-  position: absolute;
-  right: 0;
   display: flex;
   align-items: center;
-  padding-right: 30px;
 }
 .nav-bar .nav-login .icon {
   width: 80px;
