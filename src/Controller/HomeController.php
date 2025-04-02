@@ -39,4 +39,10 @@ final class HomeController extends AbstractController
             'currentSort' => $sort
         ]);
     }
+
+    #[Route('/rgpd', name: 'home_rgpd')]
+    public function mentionsLegales(): Response
+    {
+        return $this->render('home/rgpd.html.twig');
+    }
 }

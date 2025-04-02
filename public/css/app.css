@@ -749,4 +749,26 @@ h2 {
   display: flex;
   justify-content: center;
   gap: 10px;
+}
+
+.legal-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  padding: 20px;
+  border: var(--border);
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+}
+.legal-container p {
+  text-align: center;
+  line-height: 1.6;
+}
+.legal-container h1, .legal-container h2 {
+  text-align: center;
+  color: var(--color-primary);
+  text-shadow: var(--text-shadow);
 }/*# sourceMappingURL=app.css.map */

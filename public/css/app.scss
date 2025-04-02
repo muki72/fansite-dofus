@@ -886,4 +886,34 @@ h2 {
             gap: 10px;
         }
     }
+
 }
+// RGPD
+.legal-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    padding: 20px;
+    border: var(--border);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+
+    p {
+        text-align: center;
+        line-height: 1.6;
+    }
+
+    h1,h2 {
+        text-align: center;
+        color: var(--color-primary);
+        text-shadow: var(--text-shadow);
+    }
+}
+
+   
+    
+
+

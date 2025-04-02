@@ -1,13 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Reply{% endblock %}
+{% block title %}nouvelle réponse
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Reply</h1>
+	<h1>Créer une nouvelle réponse</h1>
 
-    {{ include('reply/_form.html.twig') }}
+	{{ include('reply/_form.html.twig') }}
 
-    <button class="btn-submit">
-     <a href="{{ path('app_reply_index') }}">back to list</a>
-    </button>
+	<a class="edit-cancel" href="{{ path('home') }}">Annuler</a>
 {% endblock %}
