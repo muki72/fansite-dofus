@@ -18,6 +18,7 @@ class UserType extends AbstractType
             ->add('userName')
             ->add('email')
             ->add('bio', TextareaType::class, [
+                'required' => false,
                 'attr' => [
                     'class' => 'form-textarea',
                     'placeholder' => 'Écrivez votre bio ici...',

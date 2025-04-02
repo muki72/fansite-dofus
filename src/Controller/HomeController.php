@@ -18,7 +18,7 @@ use App\Entity\User;
 
 final class HomeController extends AbstractController
 {
-    #[Route('/{sort?}', name: 'home', requirements: ['sort' => 'date|votes'])]
+    #[Route('/{sort}', name: 'home', requirements: ['sort' => 'date|votes'])]
     public function index(PostRepository $postRepository, UserRepository $userRepository, CategoryRepository $categoryRepository, $sort = 'date'): Response
     {
         $date = date("Y-m-d");

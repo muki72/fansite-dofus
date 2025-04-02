@@ -19,7 +19,7 @@ use App\Entity\Vote;
 #[Route('/post')]
 final class PostController extends AbstractController
 {
-   
+
     #[Route('/new', name: 'app_post_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
@@ -64,10 +64,20 @@ final class PostController extends AbstractController
 
 
     #[Route('/{id}/edit', name: 'app_post_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Post $post, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Post $post, EntityManagerInterface $entityManager, Security $security): Response
     {
         //securité pour verifier le role du visiteur
         $this->denyAccessUnlessGranted('ROLE_USER');
+
+
+        // Récupère l'utilisateur actuellement connecté
+        $appUser = $security->getUser();
+
+        // Vérifie si l'utilisateur est bien l'auteur du post
+        if ($appUser !== $post->getUser()) {
+            return $this->redirectToRoute('home');
+        }
+
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
@@ -84,15 +94,25 @@ final class PostController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_post_delete', methods: ['POST'])]
-    public function delete(Request $request, Post $post, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, Post $post, EntityManagerInterface $entityManager, Security $security): Response
     {
         //securité pour verifier le role du visiteur
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-        if ($this->isCsrfTokenValid('delete' . $post->getId(), $request->getPayload()->getString('_token'))) {
-             $entityManager->remove($post);
-             $entityManager->flush();
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
+
+        // Récupère l'utilisateur actuellement connecté
+        $appUser = $security->getUser();
+
+        // Vérifie si l'utilisateur est bien l'auteur du post
+        if ($appUser !== $post->getUser()) {
+            return $this->redirectToRoute('home');
         }
-        
+
+        if ($this->isCsrfTokenValid('delete' . $post->getId(), $request->getPayload()->getString('_token'))) {
+            $entityManager->remove($post);
+            $entityManager->flush();
+        }
+
 
         return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
     }

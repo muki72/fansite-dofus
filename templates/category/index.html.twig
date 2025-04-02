@@ -3,21 +3,16 @@
 	<button class="btn-submit">
 		<a href="{{ path('app_category_new') }}">Créer une catégorie</a>
 	</button>
+
 	{% for category in categories %}
 		<div class="table-admin-category">
-			<div class="table-header">
-				<p>ID</p>
-				<p>Titre</p>
-				<p>Image</p>
-				<p>Date</p>
-				<p>Actions</p>
-			</div>
-
 			<div class="table-row">
 				<p>{{ category.id }}</p>
 				<p>{{ category.title }}</p>
 				<div>
-					<img src="{{ asset('uploads/images/' ~ category.img) }}" alt="image de la catégorie {{ category.title }}">
+					<a href="{{ asset('uploads/images/' ~ category.img) }}" target="_blank">
+						<img src="{{ asset('uploads/images/' ~ category.img) }}" alt="image de la catégorie {{ category.title }}">
+					</a>
 				</div>
 				<p>{{ category.date ? category.date|date('d/m/Y') : '' }}</p>
 				<div class="actions">

@@ -66,6 +66,12 @@ h2 {
   transform: scale(0.98);
   box-shadow: 0 2px 6px rgba(0, 229, 255, 0.4);
 }
+.btn-submit.active {
+  background-color: #00E5FF;
+  color: #1E1E1E;
+  border-color: #072D38;
+  box-shadow: 0 4px 12px rgba(0, 229, 255, 0.6);
+}
 
 .btn-delete {
   background-color: #072D38;
@@ -651,7 +657,6 @@ h2 {
   box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
   overflow: hidden;
 }
-.table-admin-guide .table-header,
 .table-admin-guide .table-row {
   display: grid;
   justify-content: space-between;
@@ -659,16 +664,9 @@ h2 {
   align-items: center;
   padding: 15px;
 }
-.table-admin-guide .table-header p,
 .table-admin-guide .table-row p {
   text-align: center;
   padding: 5px;
-}
-.table-admin-guide .table-header {
-  background: #00E5FF;
-  color: #1E1E1E;
-  font-weight: bold;
-  text-transform: uppercase;
 }
 .table-admin-guide .table-row {
   border-bottom: 1px solid #00E5FF;

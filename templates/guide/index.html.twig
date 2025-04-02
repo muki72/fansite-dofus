@@ -6,21 +6,14 @@
 	{% for guide in guides %}
 
 		<div class="table-admin-guide">
-			<div class="table-header">
-				<p>ID</p>
-				<p>Titre</p>
-				<p>Texte</p>
-				<p>Image</p>
-				<p>Date</p>
-				<p>Actions</p>
-			</div>
-
 			<div class="table-row">
 				<p>{{ guide.id }}</p>
 				<p>{{ guide.title }}</p>
 				<p>{{ guide.text }}</p>
 				<div>
-					<img src="{{ asset('uploads/images/' ~ guide.img) }}" alt="image du guide {{ guide.title }}">
+					<a href="{{ asset('uploads/images/' ~ guide.img) }}" target="_blank">
+						<img src="{{ asset('uploads/images/' ~ guide.img) }}" alt="image du guide {{ guide.title }}">
+					</a>
 				</div>
 				<p>{{ guide.date ? guide.date|date('d/m/Y') : '' }}</p>
 				<div class="actions">

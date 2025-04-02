@@ -54,10 +54,9 @@
 			<div class="post-actions">
 
 				<a class="btn-submit" href="{{ path('app_reply_new', {'id': post.id}) }}">reply</a>
-
-				{% if is_granted('ROLE_ADMIN') %}
-					{{ include('post/_delete_form.html.twig') }}
-				{% elseif app.user.id is same as(post.user.id) %}
+				{% if is_granted('ROLE_ADMIN') or (app.user and app.user.id is same as(post.user.id)) %}
+					<a class="btn-submit" href="{{ path('app_post_edit', {'id': post.id}) }}">
+						edit</a>
 					{{ include('post/_delete_form.html.twig') }}
 				{% endif %}
 			</div>
@@ -80,11 +79,15 @@
 							<p>{{ reply.text }}</p>
 							{{ reply.date ? reply.date|date("d-m-Y") : '' }}
 						</div>
-						{% if is_granted('ROLE_ADMIN') %}
-							{{ include('reply/_delete_form.html.twig') }}
-						{% elseif app.user.id is same as(reply.user.id) %}
-							{{ include('reply/_delete_form.html.twig') }}
-						{% endif %}
+
+						{# SI admin OU (connecté ET l'user est le proprio)  #}
+						<div class="post-actions">
+							{% if is_granted('ROLE_ADMIN') or (app.user and app.user.id is same as(reply.user.id)) %}
+								<a class="btn-submit" href="{{ path('app_reply_edit', {'id': reply.id}) }}">
+									edit</a>
+								{{ include('reply/_delete_form.html.twig') }}
+							{% endif %}
+						</div>
 					{% endfor %}
 				</article>
 			{% endif %}

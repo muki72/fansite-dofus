@@ -92,6 +92,14 @@ h2 {
         box-shadow: 0 2px 6px rgba($color-primary, 0.4);
     }
 
+    &.active{
+        background-color: $color-primary;
+        color: $color-background;
+        border-color: $color-secondary;
+        box-shadow: 0 4px 12px rgba($color-primary, 0.6);
+        
+    }
+
     
 }
 
@@ -757,7 +765,7 @@ h2 {
     overflow: hidden;
 
     
-    .table-header,
+    
     .table-row {
         display: grid;
         justify-content: space-between;
@@ -771,12 +779,7 @@ h2 {
         }
     }
 
-    .table-header {
-        background: $color-primary;
-        color: $color-background;
-        font-weight: bold;
-        text-transform: uppercase;
-    }
+    
 
     .table-row {
         border-bottom: 1px solid $color-primary;
