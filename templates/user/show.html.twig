@@ -51,13 +51,23 @@
 					<div class="post-head">
 
 						<div class="post-vote">
-							<button class="upvote btn-submit {% if post.getUserVote(app.user) == 1 %}active-up-vote{% endif %}" data-post-id="{{ post.id }}">
-								▲
-							</button>
-							<p id="score-{{ post.id }}">{{ post.voteScore }}</p>
-							<button class="downvote btn-submit {% if post.getUserVote(app.user) == -1 %}active-down-vote{% endif %}" data-post-id="{{ post.id }}">
-								▼
-							</button>
+							{% if is_granted('ROLE_USER') %}
+						<button class="upvote btn-submit {% if post.getUserVote(app.user) == 1 %}active-up-vote{% endif %}" data-post-id="{{ post.id }}">
+							▲
+						</button>
+						<p id="score-{{ post.id }}">{{ post.voteScore }}</p>
+						<button class="downvote btn-submit {% if post.getUserVote(app.user) == -1 %}active-down-vote{% endif %}" data-post-id="{{ post.id }}">
+							▼
+						</button>
+					{% else %}
+						<a class="btn-submit" href="{{ path('app_login') }}">
+							▲
+						</a>
+						<p id="score-{{ post.id }}">{{ post.voteScore }}</p>
+						<a class="btn-submit" href="{{ path('app_login') }}">
+							▼
+						</a>
+					{% endif %}
 						</div>
 						<h2 class="title">{{ post.title }}</h2>
 						<div class="message-user">
@@ -79,7 +89,9 @@
 
 					<div class="post-body">
 						{% if post.img is not null %}
-							<img src="{{ asset('uploads/images/' ~ post.img) }}">
+							<a href="{{ asset('uploads/images/' ~ post.img) }}" target="_blank">
+								<img src="{{ asset('uploads/images/' ~ post.img) }}">
+							</a>
 						{% endif %}
 						<p>{{ post.text }}</p>
 					</div>
@@ -92,7 +104,7 @@
 
 					<div class="post-actions">
 
-						<a class="btn-submit" href="{{ path('app_reply_new', {'id': post.id}) }}">reply</a>
+						<a class="btn-submit" href="{{ path('app_reply_new', {'id': post.id}) }}">Répondre</a>
 
 						{# SI admin OU (connecté ET l'user est le proprio)  #}
 
@@ -103,6 +115,7 @@
 						{% endif %}
 
 					</div>
+				</article>
 					{% if post.replies is not empty %}
 						<article class="reply-container">
 							<h2 class="title">Réponses</h2>
@@ -123,6 +136,11 @@
 
 								</div>
 								<div class="post-body">
+									{% if reply.img is not null %}
+										<a href="{{ asset('uploads/images/' ~ reply.img) }}" target="_blank">
+											<img src="{{ asset('uploads/images/' ~ reply.img) }}">
+										</a>
+									{% endif %}
 									<p>{{ reply.text }}</p>
 									{{ reply.date ? reply.date|date("d-m-Y") : '' }}
 								</div>
@@ -141,7 +159,7 @@
 
 						</article>
 					{% endif %}
-				</article>
+				
 
 			{% else %}
 

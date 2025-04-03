@@ -1,16 +1,17 @@
 // 🎨 Variables
-$color-background: #1E1E1E; // Noir charbon
+$color-background: #181818; // Noir charbon
 $color-primary: #00E5FF; // Cyan néon
 $color-text: #D9D9D9; // Gris clair
-$color-secondary: #072D38; // Bleu nuit
+$color-secondary: #1E1E1E; // Bleu nuit
 $color-pink: #f700ff;
 
 $text-shadow: 1px 1px 5px #1E1E1E;
-$box-shadow: #00E5FF 0px 2px 5px 0px, #00E5FF 0px 1px 1px 0px;
-$inset-box-shadow: #1E1E1E 0px 2px 4px 0px inset;
 
 $border: solid 1px $color-primary;
+$border-bottom: solid 3px $color-primary;
 $border-pink: solid 1px $color-pink;
+$border-bottom-pink: solid 3px $color-pink;
+$border-bicolor: $color-pink $color-primary $color-primary $color-pink;
 
 @mixin responsive($size) {
     @media (max-width: $size) {
@@ -70,6 +71,7 @@ h2 {
     background-color: $color-secondary;
     color: $color-text;
     border: $border;
+    border-color: $border-bicolor;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
@@ -77,26 +79,22 @@ h2 {
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    box-shadow: 0 4px 8px rgba($color-primary, 0.3);
 
     &:hover {
         background-color: $color-primary;
         color: $color-background;
         border-color: $color-secondary;
-        box-shadow: 0 4px 12px rgba($color-primary, 0.6);
         transform: scale(1.05);
     }
 
     &:active {
         transform: scale(0.98);
-        box-shadow: 0 2px 6px rgba($color-primary, 0.4);
     }
 
     &.active{
         background-color: $color-primary;
         color: $color-background;
         border-color: $color-secondary;
-        box-shadow: 0 4px 12px rgba($color-primary, 0.6);
         
     }
 
@@ -141,24 +139,25 @@ h2 {
     border-radius: 15px;
 }
 
-.danger{
-    color: red;
-}
 
 //  Nav Bar
 .nav-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
     width: 98%;
     height: 100px;
-    border-radius: 15px;
     background-color: $color-secondary;
-    border: $border;
+    border-bottom: $border-bottom;
     padding-right: 30px;
-    position: relative;
+    
 
     .logo-wrapper {  
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
         a{
             img {
                 padding-top: 25px;
@@ -175,6 +174,7 @@ h2 {
     .nav-login {
         display: flex;
         align-items: center;
+        gap: 10px;
         
 
         .icon{
@@ -204,6 +204,7 @@ h2 {
         text-align: center;
         background-color: $color-secondary;
         border: $border;
+        border-bottom: $border-bottom;
         border-radius: 15px;
         width: 30%;
         height: 500px;
@@ -227,6 +228,7 @@ h2 {
         text-align: center;
         background-color: $color-secondary;
         border: $border;
+        border-bottom: $border-bottom;
         border-radius: 15px;
         width: 25%;
         padding: 30px;
@@ -247,8 +249,8 @@ h2 {
         text-align: center;
         background-color: $color-secondary;
         border: $border;
+        border-bottom: $border-bottom;
         border-radius: 15px;
-        box-shadow: $box-shadow;
         width: calc(25% - 16px * 3);
         height: 500px;
         padding: 30px;
@@ -297,7 +299,6 @@ h2 {
 .server-img{
     border-radius: 15px;
     scale: 1.2;
-    box-shadow: $box-shadow;
 }
 
 .portal-details{
@@ -339,6 +340,7 @@ h2 {
     border-radius: 12px;
     box-shadow: 0 0 10px rgba($color-primary, 0.3);
     border: $border;
+    border-bottom: $border-bottom;
     width: 100%;
     max-width: 400px;
     display: flex;
@@ -361,6 +363,7 @@ h2 {
     background: rgba(168, 188, 190, 0.33);
     backdrop-filter: blur(7.4px);
     border: $border;
+    border-bottom: $border-bottom;
 
     @include responsive(768px) {
         width: 80%;
@@ -374,12 +377,14 @@ h2 {
     padding: 10px;
     margin-top: 15px;
     margin-bottom: 15px;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
+    border-bottom: $border-bottom;
     background-color: $color-secondary;
     border-radius: 15px;
     color: $color-text;
     font-size: 1rem;
     transition: border 0.3s ease-in-out;
+    outline: none;
 
     &::placeholder {
         color: $color-text;
@@ -388,6 +393,7 @@ h2 {
 
     &:hover {
         border: $border;
+        border-bottom: $border-bottom;
         outline: none;
     }
 }
@@ -419,23 +425,6 @@ h2 {
     }
 }
 
-.form-btn {
-    width: 200px;
-    height: 50px;
-    background-color: $color-secondary;
-    color: $color-text;
-    font-size: 1rem;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
-
-    &:hover {
-        background-color: $color-primary;
-        color: $color-background;
-    }
-}
 
 .edit-cancel {
     display: block;
@@ -460,7 +449,7 @@ h2 {
     width: 99%;
     border-radius: 15px;
     border: $border;
-    box-shadow: $box-shadow;
+    border-bottom: $border-bottom;
 
     h2 {
         margin-top: 100px;
@@ -490,7 +479,7 @@ h2 {
             height: 169px;
             border-radius: 15px;
             border: $border;
-            box-shadow: $box-shadow;
+            border-bottom: $border-bottom;
            
 
         }
@@ -505,8 +494,8 @@ h2 {
     padding: 30px;
     background-color: $color-secondary;
     border: $border;
+    border-bottom: $border-bottom;
     border-radius: 15px;
-    box-shadow: $box-shadow;
     text-align: center;
 
     img{
@@ -527,8 +516,8 @@ h2 {
         padding: 30px;
         background-color: $color-secondary;
         border: $border;
+        border-bottom: $border-bottom;
         border-radius: 15px;
-        box-shadow: $box-shadow;
         text-align: center;
         .guide-background{
             display: flex;
@@ -541,10 +530,7 @@ h2 {
             }           
         }
     }
-    .guide-card:hover{
-        border: solid 1px $color-pink;
-        box-shadow: none;
-    }
+   
 }
 
 //post
@@ -566,6 +552,7 @@ h2 {
         color: $color-text;
         text-shadow: $text-shadow;
         border: $border;
+        border-bottom: $border-bottom;
 
         .sort-btn {
             margin-bottom: 10px;
@@ -575,10 +562,12 @@ h2 {
 }
 
 .post-container{
+    display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 70%;
     background-color: $color-secondary;
     border: $border;
+    border-bottom: $border-bottom;
     border-radius: 15px;
     padding: 1%;
 
@@ -637,10 +626,112 @@ h2 {
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        img{
-            width: 50%;
+
+        a{
+            img{
+                max-width: 720px;
+                max-height: 480px;
+                border-radius: 15px;
+            }
+        }
+        p{
+            box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75) inset; 
             border-radius: 15px;
-            box-shadow: $box-shadow;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+        }
+    }
+    .post-date{
+        display: flex;
+        justify-content: end;
+    }
+    .post-actions{
+        display: flex;
+        gap: 10px;
+    }
+}
+
+.active-up-vote{
+    background-color: $color-primary;
+}
+.active-down-vote{
+    background-color: $color-pink;
+}
+
+//reply
+
+.reply-container{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    background-color: $color-secondary;
+    border: $border-pink;
+    border-bottom: $border-bottom-pink;
+    border-radius: 15px;
+    padding: 1%;
+
+    .post-head{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .post-vote{
+            text-align: center;
+            font-size: 1.5em;
+            p{
+                margin: 10px;
+                font-weight: bold;
+            }
+            button{
+                scale: 0.8;
+            }
+        }
+
+        .title{
+            transform: translateX(45px);
+        }
+    
+    }
+
+    .message-user{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $color-primary;
+        font-size: 1.5em;
+
+        a:hover{
+            text-decoration: underline;
+            text-decoration-color: $color-primary;
+        }
+
+        img{
+            width: 1.5em;
+            height: 1.5em;
+            border-radius: 15px;
+            margin-left: 10px ;
+            border: 1px solid transparent;
+
+            
+        }
+
+        img:hover{
+            border: $border-pink;
+        }
+    }
+
+    .post-body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        a{
+            img{
+                max-width: 720px;
+                max-height: 480px;
+                border-radius: 15px;
+            }
         }
         p{
             box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75) inset; 
@@ -661,25 +752,6 @@ h2 {
 }
 
 
-
-.active-up-vote{
-    background-color: green;
-}
-.active-down-vote{
-    background-color: red;
-}
-
-//reply
-
-.reply-container{
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    margin-top: 1%;
-    border-top: $border;
-}
-
-
 //profile
 
 .user-container{
@@ -697,6 +769,7 @@ h2 {
         padding: 20px;
         margin-left: 10px;
         border: $border;
+        border-bottom: $border-bottom;
         background-color: $color-secondary;
         border-radius: 15px;
         gap: 5%;
@@ -753,7 +826,8 @@ h2 {
     flex-direction: column;
     background: $color-secondary;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba($color-primary, 0.3);
+    border: $border;
+    border-bottom: $border-bottom;
     overflow: hidden;
 
     
@@ -822,7 +896,8 @@ h2 {
     flex-direction: column;
     background: $color-secondary;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba($color-primary, 0.3);
+    border: $border-pink;
+    border-bottom: $border-bottom-pink;
     overflow: hidden;
 
     
@@ -898,8 +973,8 @@ h2 {
     color: $color-text;
     padding: 20px;
     border: $border;
-    border-radius: 10px;
-    box-shadow: $box-shadow;
+    border-bottom: $border-bottom;
+    border-radius: 15px;
 
     p {
         text-align: center;

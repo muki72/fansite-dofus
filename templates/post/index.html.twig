@@ -45,7 +45,9 @@
 
 			<div class="post-body">
 				{% if post.img is not null %}
-					<img src="{{ asset('uploads/images/' ~ post.img) }}">
+					<a href="{{ asset('uploads/images/' ~ post.img) }}" target="_blank">
+						<img src="{{ asset('uploads/images/' ~ post.img) }}">
+					</a>
 				{% endif %}
 				<p>{{ post.text }}</p>
 			</div>
@@ -58,18 +60,18 @@
 
 			<div class="post-actions">
 
-				<a class="btn-submit" href="{{ path('app_reply_new', {'id': post.id}) }}">reply</a>
+				<a class="btn-submit" href="{{ path('app_reply_new', {'id': post.id}) }}">Répondre</a>
 				{% if is_granted('ROLE_ADMIN') or (app.user and app.user.id is same as(post.user.id)) %}
 					<a class="btn-submit" href="{{ path('app_post_edit', {'id': post.id}) }}">
 						edit</a>
 					{{ include('post/_delete_form.html.twig') }}
 				{% endif %}
 			</div>
-
+		</article>
 			{# REPLY #}
 			{% if post.replies is not empty %}
 				<article class="reply-container">
-					<h2 class="title">Réponses</h2>
+					<h3 class="title">"{{ post.title }}"</h2>
 
 
 					{% for reply in post.replies %}
@@ -89,7 +91,9 @@
 						</div>
 						<div class="post-body">
 							{% if reply.img is not null %}
-								<img src="{{ asset('uploads/images/' ~ reply.img) }}">
+								<a href="{{ asset('uploads/images/' ~ reply.img) }}" target="_blank">
+									<img src="{{ asset('uploads/images/' ~ reply.img) }}">
+								</a>
 							{% endif %}
 							<p>{{ reply.text }}</p>
 							{{ reply.date ? reply.date|date("d-m-Y") : '' }}
@@ -106,7 +110,7 @@
 					{% endfor %}
 				</article>
 			{% endif %}
-		</article>
+		
 
 
 	{% endfor %}
