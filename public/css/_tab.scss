@@ -1,0 +1,110 @@
+@media (max-width: 1300px) {
+
+    .nav-bar {
+
+        .nav-link {
+            display: flex;
+            flex-direction: column;
+            margin: 30px;
+            gap: 20px;
+
+            a {
+                scale: 1.2;
+            }
+        }
+
+        .logo-wrapper {
+            top: 85%;
+
+            a {
+                img {
+                    height: 200px;
+                    width: 200px;
+                }
+            }
+        }
+
+        .nav-login {
+            flex-direction: column-reverse;
+
+            a {
+                .icon {
+                    width: 120px;
+                    height: 120px;
+
+                }
+            }
+        }
+    }
+
+    .item-container {
+        flex-direction: column;
+
+        .item-home-card {
+            width: 90%;
+
+            .home-icon {
+                width: 120px;
+                height: 120px;
+            }
+
+            p,
+            h3 {
+                font-size: 30px;
+            }
+        }
+
+        .portal-background {
+            background-position: center;
+        }
+
+    }
+
+    .post-container {
+        width: 100%;
+
+        .post-head {
+            .title {
+                font-size: 1.5em;
+            }
+
+            .message-user {
+                width: 30%;
+            }
+        }
+
+    }
+
+    .reply-container {
+        width: 70%;
+    }
+
+    .user-container {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+
+        .user-profile {
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: fit-content;
+            margin: 0;
+            gap: 2em;
+
+            .user-infos {
+                gap: 1em;
+            }
+
+        }
+
+        .user-post {
+            width: 100%;
+
+            .post-container {
+                width: 100%;
+            }
+        }
+    }
+}

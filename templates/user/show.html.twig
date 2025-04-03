@@ -6,36 +6,42 @@
 {% block body %}
 	<div class="user-container">
 		<div class="user-profile">
-			<h1>{{ user.userName }}</h1>
+			<div class="user-infos">
+				<h1>{{ user.userName }}</h1>
+			
+					{% if user %}
+						{% if user.img %}
+							<a href="{{ path('app_user_show', {'id': user.id}) }}">
+								<img src="{{ asset('uploads/images/' ~ user.img) }}">
+							</a>
+						{% else %}
 
 
-			{% if user %}
-				{% if user.img %}
-					<a href="{{ path('app_user_show', {'id': user.id}) }}">
-						<img src="{{ asset('uploads/images/' ~ user.img) }}">
-					</a>
-				{% else %}
+							<a href="{{ path('app_user_show', {'id': user.id}) }}">
+								<img src="..\images\user_img.png" class="home"></a>
+
+						{% endif %}
+						<p>{{ user.bio }}</p>
+			</div>
+			<div class="user-actions">
+			
+							{% if app.user is defined and app.user is not null and app.user.id == user.id %}
+								<button class="btn-submit">
+									<a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier mon Profil</a>
+								</button>
+							{% endif %}
+
+						{% endif %}
 
 
-					<a href="{{ path('app_user_show', {'id': user.id}) }}">
-						<img src="..\images\user_img.png" class="home"></a>
-
-				{% endif %}
+				
 
 				{% if app.user is defined and app.user is not null and app.user.id == user.id %}
-					<button class="btn-submit">
-						<a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier mon Profil</a>
-					</button>
+					<a href="{{ path('app_logout') }}" class="danger">Deconnecter mon compte</a>
 				{% endif %}
+			</div>
 
-			{% endif %}
 
-			<h3>{{ user.email }}</h3>
-			<p>{{ user.bio }}</p>
-
-			{% if app.user is defined and app.user is not null and app.user.id == user.id %}
-				<a href="{{ path('app_logout') }}" class="danger">Deconnecter mon compte</a>
-			{% endif %}
 
 		</div>
 
@@ -47,27 +53,25 @@
 
 			{% for post in user.posts %}
 				<article class="post-container">
-
 					<div class="post-head">
-
 						<div class="post-vote">
 							{% if is_granted('ROLE_USER') %}
-						<button class="upvote btn-submit {% if post.getUserVote(app.user) == 1 %}active-up-vote{% endif %}" data-post-id="{{ post.id }}">
-							▲
-						</button>
-						<p id="score-{{ post.id }}">{{ post.voteScore }}</p>
-						<button class="downvote btn-submit {% if post.getUserVote(app.user) == -1 %}active-down-vote{% endif %}" data-post-id="{{ post.id }}">
-							▼
-						</button>
-					{% else %}
-						<a class="btn-submit" href="{{ path('app_login') }}">
-							▲
-						</a>
-						<p id="score-{{ post.id }}">{{ post.voteScore }}</p>
-						<a class="btn-submit" href="{{ path('app_login') }}">
-							▼
-						</a>
-					{% endif %}
+								<button class="upvote btn-submit {% if post.getUserVote(app.user) == 1 %}active-up-vote{% endif %}" data-post-id="{{ post.id }}">
+									▲
+								</button>
+								<p id="score-{{ post.id }}">{{ post.voteScore }}</p>
+								<button class="downvote btn-submit {% if post.getUserVote(app.user) == -1 %}active-down-vote{% endif %}" data-post-id="{{ post.id }}">
+									▼
+								</button>
+							{% else %}
+								<a class="btn-submit" href="{{ path('app_login') }}">
+									▲
+								</a>
+								<p id="score-{{ post.id }}">{{ post.voteScore }}</p>
+								<a class="btn-submit" href="{{ path('app_login') }}">
+									▼
+								</a>
+							{% endif %}
 						</div>
 						<h2 class="title">{{ post.title }}</h2>
 						<div class="message-user">
@@ -83,18 +87,16 @@
 							{% endif %}
 
 						</div>
-
-
 					</div>
 
 					<div class="post-body">
-						{% if post.img is not null %}
-							<a href="{{ asset('uploads/images/' ~ post.img) }}" target="_blank">
-								<img src="{{ asset('uploads/images/' ~ post.img) }}">
-							</a>
-						{% endif %}
-						<p>{{ post.text }}</p>
-					</div>
+				{% if post.img is not null %}
+					<a href="{{ asset('uploads/images/' ~ post.img) }}" target="_blank">
+						<img src="{{ asset('uploads/images/' ~ post.img) }}">
+					</a>
+				{% endif %}
+				<p>{{ post.text }}</p>
+			</div>
 
 
 					<div class="post-date">
@@ -118,10 +120,11 @@
 				</article>
 					{% if post.replies is not empty %}
 						<article class="reply-container">
-							<h2 class="title">Réponses</h2>
 
 
-							{% for reply in post.replies %}
+					<h3 class="title">"{{ post.title }}"</h2>
+					{% for reply in post.replies %}
+						<div class="reply-content">
 								<div class="message-user">
 									<a href="{{ path('app_user_show', {'id': reply.user.id}) }}">
 										<p>{{ reply.user.userName }}</p>
@@ -134,6 +137,7 @@
 											<img src="..\images\user_img.png" class="icon"></a>
 									{% endif %}
 
+
 								</div>
 								<div class="post-body">
 									{% if reply.img is not null %}
@@ -142,20 +146,21 @@
 										</a>
 									{% endif %}
 									<p>{{ reply.text }}</p>
-									{{ reply.date ? reply.date|date("d-m-Y") : '' }}
 								</div>
-								<div
-									class="post-actions">
-									{# SI admin OU (connecté ET l'user est le proprio)  #}
+									<div class="post-date">
+										<p>{{ reply.date ? reply.date|date("d-m-Y") : '' }}</p>
+									</div>
 
+								{# SI admin OU (connecté ET l'user est le proprio)  #}
+								<div class="post-actions">
 									{% if is_granted('ROLE_ADMIN') or (app.user and app.user.id is same as(reply.user.id)) %}
 										<a class="btn-submit" href="{{ path('app_reply_edit', {'id': reply.id}) }}">
 											edit</a>
 										{{ include('reply/_delete_form.html.twig') }}
 									{% endif %}
-
 								</div>
-							{% endfor %}
+							</div>
+						{% endfor %}
 
 						</article>
 					{% endif %}

@@ -28,12 +28,12 @@
 		</div>
 		<div class="item-home-card">
 			<a href="{{ path('app_almanax') }}">
-				<h2>Almanax du jour</h2>
+				<h2 class="title" >Almanax du jour</h2>
 				<h3>{{ almanax.tribute.item.name }}
 					x
 					{{ almanax.tribute.quantity }}</h3>
 				<img src="{{ almanax.tribute.item.image_urls.sd }}">
-				<h3>{{ almanax.bonus.description }}</h3>
+				<p>{{ almanax.bonus.description }}</p>
 			</a>
 		</div>
 	</div>
