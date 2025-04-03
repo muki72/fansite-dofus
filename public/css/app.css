@@ -756,12 +756,12 @@ h2 {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: var(--color-background);
-  color: var(--color-text);
+  background-color: #1E1E1E;
+  color: #D9D9D9;
   padding: 20px;
-  border: var(--border);
+  border: solid 1px #00E5FF;
   border-radius: 10px;
-  box-shadow: var(--box-shadow);
+  box-shadow: #00E5FF 0px 2px 5px 0px, #00E5FF 0px 1px 1px 0px;
 }
 .legal-container p {
   text-align: center;
@@ -769,6 +769,6 @@ h2 {
 }
 .legal-container h1, .legal-container h2 {
   text-align: center;
-  color: var(--color-primary);
-  text-shadow: var(--text-shadow);
+  color: #00E5FF;
+  text-shadow: 1px 1px 5px #1E1E1E;
 }/*# sourceMappingURL=app.css.map */

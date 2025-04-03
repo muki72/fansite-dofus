@@ -894,12 +894,12 @@ h2 {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: var(--color-background);
-    color: var(--color-text);
+    background-color: $color-background;
+    color: $color-text;
     padding: 20px;
-    border: var(--border);
+    border: $border;
     border-radius: 10px;
-    box-shadow: var(--box-shadow);
+    box-shadow: $box-shadow;
 
     p {
         text-align: center;
@@ -908,8 +908,8 @@ h2 {
 
     h1,h2 {
         text-align: center;
-        color: var(--color-primary);
-        text-shadow: var(--text-shadow);
+        color: $color-primary;
+        text-shadow: $text-shadow;
     }
 }
 
