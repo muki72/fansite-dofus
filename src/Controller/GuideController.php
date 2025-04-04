@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use \DateTimeImmutable;
 
 #[Route('/guide')]
 final class GuideController extends AbstractController
@@ -23,16 +24,6 @@ final class GuideController extends AbstractController
             'guides' => $guideRepository->findAll(),
         ]);
     }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -58,6 +49,12 @@ final class GuideController extends AbstractController
                 );
                 $guide->setImg($newFilename);
             }
+            //ajoute l'utilisateur qui creer le post 
+            $guide->setUser($this->getUser());
+
+            //ajoute la date de la creation du post
+            $guide->setDate(new DateTimeImmutable('today'));
+
             $entityManager->persist($guide);
             $entityManager->flush();
 

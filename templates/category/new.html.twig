@@ -10,23 +10,15 @@
 		<div class="edit-container">
 			{{ form_start(form) }}
 
-			<div class="form-group">
-				{{ form_widget(form.title, {'attr': {'class': 'form-input', 'placeholder': 'titre'}}) }}
+			{{ form_widget(form.title, {'attr': {'class': 'form-input', 'placeholder': 'titre'}}) }}
+
+			{{ form_widget(form.image, {'attr': {'class': 'form-input file-upload'}}) }}
+
+			<div class="inline">
+				<button type="submit" class="btn-submit">creer</button>
+				<a href="{{ path('app_dashboard') }}" class="edit-cancel">Annuler</a>
 			</div>
-
-			<div class="form-group">
-				{{ form_widget(form.image, {'attr': {'class': 'form-input file-upload'}}) }}
-			</div>
-
-			<div class="form-group">
-				{{ form_widget(form.date, {'attr': {'class': 'form-input', 'placeholder': 'date'}}) }}
-			</div>
-
-
-			<button type="submit" class="btn-submit">creer</button>
 			{{ form_end(form) }}
-
-			<a href="{{ path('app_dashboard') }}" class="edit-cancel">Annuler</a>
 		</div>
 	</section>
 {% endblock %}

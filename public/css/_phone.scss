@@ -1,0 +1,100 @@
+@media (max-width: 768px) {
+
+    //nav bar
+    .nav-bar {
+        .logo-wrapper {
+            top: 100%;
+
+            a {
+                img {
+                    height: 150px;
+                    width: 150px;
+                }
+            }
+        }
+
+        .nav-login {
+            flex-direction: column-reverse;
+
+            a {
+                .icon {
+                    width: 100px;
+                    height: 100px;
+
+                }
+            }
+        }
+    }
+
+    //post
+    .post-container {
+        width: 95%;
+
+        .post-head {
+            .title {
+                font-size: 1em;
+            }
+
+            .message-user {
+                flex-direction: column;
+
+                a {
+                    p {
+                        font-size: 0.8em;
+                    }
+                }
+
+
+            }
+        }
+    }
+
+    .user-post {
+        .post-container {
+            width: 95%;
+
+            .post-head {
+                .title {
+                    font-size: 1em;
+                }
+
+                .message-user {
+                    flex-direction: column;
+
+                    a {
+                        p {
+                            font-size: 0.8em;
+                        }
+                    }
+
+
+                }
+            }
+        }
+    }
+
+    // card home (users,portals,almanax)
+    .item-container {
+        .item-home-card {
+            width: 100%;
+
+            .home-icon {
+                width: 90px;
+                height: 90px;
+            }
+        }
+
+    }
+
+    // portails et almanax
+
+    .item-list {
+        .item-card {
+            width: 90%;
+
+            &.today {
+                width: 90%;
+            }
+        }
+    }
+}

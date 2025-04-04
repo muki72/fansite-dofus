@@ -8,39 +8,36 @@
 		<div class="user-profile">
 			<div class="user-infos">
 				<h1>{{ user.userName }}</h1>
-			
-					{% if user %}
-						{% if user.img %}
-							<a href="{{ path('app_user_show', {'id': user.id}) }}">
-								<img src="{{ asset('uploads/images/' ~ user.img) }}">
-							</a>
-						{% else %}
+
+				{% if user %}
+					{% if user.img %}
+						<a href="{{ path('app_user_show', {'id': user.id}) }}">
+							<img src="{{ asset('uploads/images/' ~ user.img) }}">
+						</a>
+					{% else %}
 
 
-							<a href="{{ path('app_user_show', {'id': user.id}) }}">
-								<img src="..\images\user_img.png" class="home"></a>
+						<a href="{{ path('app_user_show', {'id': user.id}) }}">
+							<img src="..\images\user_img.png" class="home"></a>
 
-						{% endif %}
-						<p>{{ user.bio }}</p>
-			</div>
-			<div class="user-actions">
-			
-							{% if app.user is defined and app.user is not null and app.user.id == user.id %}
-								<button class="btn-submit">
-									<a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier mon Profil</a>
-								</button>
-							{% endif %}
+					{% endif %}
+					<p>{{ user.bio }}</p>
+				</div>
+				<div class="user-actions">
 
-						{% endif %}
+					{% if app.user is defined and app.user is not null and app.user.id == user.id %}
+						<button class="btn-submit">
+							<a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier mon Profil</a>
+						</button>
+					{% endif %}
 
+				{% endif %}
 
-				
 
 				{% if app.user is defined and app.user is not null and app.user.id == user.id %}
 					<a href="{{ path('app_logout') }}" class="danger">Deconnecter mon compte</a>
 				{% endif %}
 			</div>
-
 
 
 		</div>
@@ -73,7 +70,7 @@
 								</a>
 							{% endif %}
 						</div>
-						<h2 class="title">{{ post.title }}</h2>
+
 						<div class="message-user">
 
 							<a href="{{ path('app_user_show', {'id': post.user.id}) }}">
@@ -88,15 +85,15 @@
 
 						</div>
 					</div>
-
+					<h2 class="post-title">{{ post.title }}</h2>
 					<div class="post-body">
-				{% if post.img is not null %}
-					<a href="{{ asset('uploads/images/' ~ post.img) }}" target="_blank">
-						<img src="{{ asset('uploads/images/' ~ post.img) }}">
-					</a>
-				{% endif %}
-				<p>{{ post.text }}</p>
-			</div>
+						{% if post.img is not null %}
+							<a href="{{ asset('uploads/images/' ~ post.img) }}" target="_blank">
+								<img src="{{ asset('uploads/images/' ~ post.img) }}">
+							</a>
+						{% endif %}
+						<p>{{ post.text }}</p>
+					</div>
 
 
 					<div class="post-date">
@@ -118,13 +115,13 @@
 
 					</div>
 				</article>
-					{% if post.replies is not empty %}
-						<article class="reply-container">
+				{% if post.replies is not empty %}
+					<article class="reply-container">
 
 
-					<h3 class="title">"{{ post.title }}"</h2>
-					{% for reply in post.replies %}
-						<div class="reply-content">
+						<h3 class="title">"{{ post.title }}"</h2>
+						{% for reply in post.replies %}
+							<div class="reply-content">
 								<div class="message-user">
 									<a href="{{ path('app_user_show', {'id': reply.user.id}) }}">
 										<p>{{ reply.user.userName }}</p>
@@ -147,9 +144,9 @@
 									{% endif %}
 									<p>{{ reply.text }}</p>
 								</div>
-									<div class="post-date">
-										<p>{{ reply.date ? reply.date|date("d-m-Y") : '' }}</p>
-									</div>
+								<div class="post-date">
+									<p>{{ reply.date ? reply.date|date("d-m-Y") : '' }}</p>
+								</div>
 
 								{# SI admin OU (connecté ET l'user est le proprio)  #}
 								<div class="post-actions">
@@ -162,9 +159,9 @@
 							</div>
 						{% endfor %}
 
-						</article>
-					{% endif %}
-				
+					</article>
+				{% endif %}
+
 
 			{% else %}
 

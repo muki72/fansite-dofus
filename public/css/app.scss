@@ -24,7 +24,12 @@ $border-bicolor: $color-pink $color-primary $color-primary $color-pink;
     box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+    width: 0px;
+}
+
 body {
+    font-family: Arial, Helvetica, sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -83,17 +88,18 @@ h2 {
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
-    transition: all 0.3s ease-in-out;
+    display: inline-block;
+
 
     &:hover {
         background-color: $color-primary;
         color: $color-background;
         border-color: $color-secondary;
-        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba($color-primary, 0.6);
     }
 
     &:active {
-        transform: scale(0.98);
+        box-shadow: 0 4px 12px rgba($color-primary, 0.6);
     }
 
     &.active {
@@ -158,6 +164,7 @@ h2 {
     background-color: $color-secondary;
     border-bottom: $border-bottom;
     padding-right: 30px;
+    box-shadow: 0 4px 12px rgba($color-primary, 0.6);
 
 
     .logo-wrapper {
@@ -168,8 +175,8 @@ h2 {
 
         a {
             img {
-                height: 150px;
-                width: 150px;
+                height: 250px;
+                width: 250px;
             }
 
             img:hover {
@@ -186,7 +193,8 @@ h2 {
 
 
         .icon {
-            width: 80px;
+            width: 120px;
+            height: 120px;
             border-radius: 15px;
             border: $border;
         }
@@ -218,20 +226,12 @@ h2 {
         width: 30%;
         height: 500px;
         padding: 30px;
-
-
-
+        overflow-y: scroll;
 
     }
 
     .portal-background {
-
         width: 100%;
-        height: 80%;
-        background-image: url('/images/dim.jpg');
-        background-size: cover;
-        background-position: top;
-        background-repeat: no-repeat;
         border-radius: 15px;
     }
 
@@ -279,7 +279,9 @@ h2 {
 
         &.today {
             width: calc(50% - 16px * 5);
-            border: solid 1px $color-pink;
+            border: $border;
+            border-bottom: $border-bottom-pink;
+            border-left: $border-left-pink;
             background-color: $color-primary;
             color: $color-background;
             box-shadow: none;
@@ -336,7 +338,7 @@ h2 {
     background-repeat: no-repeat;
     border-radius: 15px;
     width: 98%;
-    height: 80vh;
+    min-height: 80vh;
 }
 
 .edit-section {
@@ -344,25 +346,22 @@ h2 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 110vh;
+    width: 80%;
     background-color: $color-background;
+
 }
 
 .edit-container {
-    display: flex;
-    align-items: center;
-    background: $color-background;
     padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba($color-primary, 0.3);
-    border: $border;
-    border-bottom: $border-bottom;
-    border-left: $border-left;
     width: 100%;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
     gap: 2rem;
+
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
 }
 
 .form-container {
@@ -373,11 +372,10 @@ h2 {
     padding: 2rem;
     margin-top: 5rem;
     border-radius: 8px;
-    box-shadow: 0 0 10px $color-primary;
     width: 80%;
-    height: 80vh;
+    min-height: 500px;
     gap: 30px;
-    background: rgba(168, 188, 190, 0.33);
+    background: rgba(24, 24, 24, 0.8);
     backdrop-filter: blur(7.4px);
     border: $border;
     border-bottom: $border-bottom;
@@ -388,14 +386,13 @@ h2 {
 
 .form-input {
     text-align: center;
-    width: 400px;
-    height: 60px;
+    width: 60%;
+    height: 80px;
     padding: 10px;
     margin-top: 15px;
     margin-bottom: 15px;
     border: 1px solid transparent;
     border-bottom: $border-bottom;
-    border-left: $border-left;
     background-color: $color-secondary;
     border-radius: 15px;
     color: $color-text;
@@ -414,32 +411,13 @@ h2 {
         border-left: $border-left;
         outline: none;
     }
-}
 
-
-.form-input-text {
-    text-align: center;
-    width: 400px;
-    height: 100px;
-    padding: 10px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    border: 2px solid transparent;
-    background-color: $color-secondary;
-    border-radius: 15px;
-    color: $color-text;
-    font-size: 0.8rem;
-    transition: border 0.3s ease-in-out;
-    resize: none;
-
-    &::placeholder {
-        color: $color-text;
-        opacity: 0.7;
+    &.text {
+        height: 300px;
     }
 
-    &:hover {
-        border: $border;
-        outline: none;
+    &.tag {
+        height: fit-content;
     }
 }
 
@@ -466,6 +444,7 @@ h2 {
     width: 100%;
     padding-bottom: 1em;
     border-bottom: $border-bottom;
+    box-shadow: 0 4px 12px rgba($color-primary, 0.6);
 
     h2 {
         margin-top: 100px;
@@ -505,22 +484,7 @@ h2 {
 
 
 // guides
-.guide-card {
-    width: 60%;
-    padding: 30px;
-    background-color: $color-secondary;
-    border: $border;
-    border-bottom: $border-bottom;
-    border-left: $border-left;
-    border-radius: 15px;
-    text-align: center;
 
-    img {
-        width: 640px;
-        height: 360px;
-        border-radius: 15px;
-    }
-}
 
 .guide-list {
     display: flex;
@@ -530,8 +494,7 @@ h2 {
     width: 98%;
 
     .guide-card {
-        width: 60%;
-        height: 50vh;
+        width: 70%;
         padding: 30px;
         background-color: $color-secondary;
         border: $border;
@@ -546,16 +509,52 @@ h2 {
             justify-content: center;
 
             img {
-                width: 640px;
-                height: 360px;
+                width: 720px;
+                height: 480px;
                 border-radius: 15px;
+                border-bottom: $border-bottom;
+                border-left: $border-left;
             }
         }
     }
 
 }
 
+.guide-index {
+    width: 90%;
+    padding: 30px;
+    background-color: $color-secondary;
+    border: $border;
+    border-bottom: $border-bottom;
+    border-left: $border-left;
+    border-radius: 15px;
+    text-align: center;
+
+    img {
+        border-radius: 15px;
+        border-bottom: $border-bottom;
+        border-left: $border-left;
+    }
+
+    p {
+        font-size: 2em;
+        padding: 10px;
+        font-weight: bolder;
+        width: 100%;
+        text-align: center;
+        text-transform: capitalize;
+    }
+
+
+}
+
 //post
+
+.post-title {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: $border-bottom;
+}
 
 .post-home {
     width: 99%;
@@ -576,6 +575,7 @@ h2 {
         border: $border;
         border-bottom: $border-bottom;
         border-left: $border-left;
+        box-shadow: 0 4px 12px rgba($color-primary, 0.6);
 
         h3 {
             margin: 0;
@@ -596,13 +596,12 @@ h2 {
 .post-container {
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 90%;
     background-color: $color-secondary;
     border: $border;
     border-bottom: $border-bottom;
     border-left: $border-left;
     border-radius: 15px;
-    padding: 1%;
 
     .post-head {
         display: flex;
@@ -611,17 +610,18 @@ h2 {
 
         .post-vote {
             text-align: center;
-            font-size: 1.5em;
             width: 20%;
+            margin: 30px;
 
 
             p {
-                margin: 10px;
+                font-size: 2em;
                 font-weight: bold;
             }
 
             button {
-                scale: 0.8;
+                scale: 1.5;
+                margin: 0;
             }
         }
 
@@ -636,6 +636,9 @@ h2 {
         color: $color-primary;
         font-size: 1.5em;
         width: 20%;
+        margin-bottom: 30px;
+
+
 
         a:hover {
             text-decoration: underline;
@@ -643,8 +646,8 @@ h2 {
         }
 
         img {
-            width: 1.5em;
-            height: 1.5em;
+            width: 60px;
+            height: 60px;
             border-radius: 15px;
             margin-left: 10px;
             border: 1px solid transparent;
@@ -677,7 +680,7 @@ h2 {
         }
 
         p {
-            font-size: 2em;
+            font-size: 1.5em;
             padding: 10px;
             font-weight: bolder;
             width: 100%;
@@ -690,11 +693,14 @@ h2 {
     .post-date {
         display: flex;
         justify-content: end;
+        padding: 1%;
     }
 
     .post-actions {
         display: flex;
         gap: 10px;
+        padding: 1%;
+
     }
 }
 
@@ -711,7 +717,7 @@ h2 {
 .reply-container {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 60%;
 
     .reply-content {
         margin-bottom: 3em;
@@ -722,37 +728,14 @@ h2 {
         background-color: $color-secondary;
         padding: 1%;
 
-        .post-head {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            .post-vote {
-                text-align: center;
-                font-size: 1.5em;
-
-                p {
-                    margin: 10px;
-                    font-weight: bold;
-                }
-
-                button {
-                    scale: 0.8;
-                }
-            }
-
-            .title {
-                text-align: center;
-            }
-
-        }
 
         .message-user {
             display: flex;
-            justify-content: end;
+            justify-content: center;
             align-items: center;
             color: $color-primary;
             font-size: 1.5em;
+            margin-bottom: 30px;
 
             a:hover {
                 text-decoration: underline;
@@ -760,8 +743,8 @@ h2 {
             }
 
             img {
-                width: 30px;
-                height: 30px;
+                width: 60px;
+                height: 60px;
                 border-radius: 15px;
                 margin-left: 10px;
                 border: 1px solid transparent;
@@ -876,8 +859,38 @@ h2 {
         width: 80%;
 
         .post-container {
-            margin: 5% 0 5%;
-            width: 70%;
+            width: 80%;
+
+            .message-user {
+                display: flex;
+                flex-direction: column;
+                font-size: 1em;
+                margin-bottom: 30px;
+
+                a {
+                    img {
+                        width: 60px;
+                        height: 60px;
+                    }
+                }
+            }
+        }
+
+        .reply-container {
+            width: 80%;
+
+            .message-user {
+                display: flex;
+                align-items: center;
+                margin-bottom: 30px;
+
+                a {
+                    img {
+                        width: 60px;
+                        height: 60px;
+                    }
+                }
+            }
         }
 
 
@@ -973,7 +986,12 @@ h2 {
         .actions {
             display: flex;
             justify-content: center;
+            flex-direction: column;
             gap: 10px;
+
+            button {
+                width: 100%;
+            }
         }
     }
 }
@@ -1049,7 +1067,12 @@ h2 {
         .actions {
             display: flex;
             justify-content: center;
+            flex-direction: column;
             gap: 10px;
+
+            button {
+                width: 100%;
+            }
         }
     }
 
@@ -1085,3 +1108,4 @@ h2 {
 
 
 @import './_tab.scss';
+@import './_phone.scss';

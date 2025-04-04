@@ -15,20 +15,23 @@
 							<img src="{{ asset('uploads/images/' ~ user.img) }}" class="home-icon"></a>
 					{% else %}
 						<a href="{{ path('app_user_show', {'id': user.id}) }}">
-							<img src="images\user_img.png" class="home-icon"></a>
+							<img src="images/user_img.png" class="home-icon"></a>
 					{% endif %}
 				{% endfor %}
+
 			</div>
 		</div>
 		<div class="item-home-card ">
 			<a href="{{ path('app_portals') }}">
 				<h2>Portails</h2>
-				<div class="portal-background"></div>
+
+				<img class="portal-background" src="{{ asset('/images/dim.jpg') }}" alt="">
+
 			</a>
 		</div>
 		<div class="item-home-card">
 			<a href="{{ path('app_almanax') }}">
-				<h2 class="title" >Almanax du jour</h2>
+				<h2 class="title">Almanax du jour</h2>
 				<h3>{{ almanax.tribute.item.name }}
 					x
 					{{ almanax.tribute.quantity }}</h3>

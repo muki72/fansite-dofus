@@ -31,9 +31,7 @@ class CategoryType extends AbstractType
                     ])
                 ],
             ])
-            ->add('date', null, [
-                'widget' => 'single_text',
-            ])
+
 
         ;
     }

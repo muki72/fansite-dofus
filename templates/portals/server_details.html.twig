@@ -26,21 +26,20 @@
 
 					<h3>zone:</h3>
 					{% if detail.position is defined %}
-						<p>{{ detail.position.transport.subArea}}</h3>
-					{% else %}
-						<p>inconnue</p>
-					{% endif %}
+						<p>{{ detail.position.transport.subArea}}</p>
+					</h3>
+				{% else %}
+					<p>inconnue</p>
+				{% endif %}
 
-				</div>
 				<img src="https://dofus-portals.fr/images/portals/{{ detail.dimension }}.webp" alt="portail de {{ detail.dimension }}">
 			</div>
+		</div>
 
 
-		{% endfor %}
-	</div>
+	{% endfor %}
+</div>
 
-	<button class="btn-submit">
-		<a href="{{ path('app_portals') }}">Retour aux Portails</a>
-	</button>
-
-{% endblock %}
+<button class="btn-submit">
+	<a href="{{ path('app_portals') }}">Retour aux Portails</a>
+</button>{% endblock %}

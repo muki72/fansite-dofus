@@ -33,18 +33,13 @@ class GuideType extends AbstractType
                     ])
                 ],
             ])
-            ->add('date', null, [
-                'widget' => 'single_text',
-            ])
+
             ->add('categories', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'title',
                 'multiple' => true,
             ])
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'userName',
-            ])
+
         ;
     }
 

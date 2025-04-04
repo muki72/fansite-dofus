@@ -1,5 +1,7 @@
 @media (max-width: 1300px) {
 
+    // responsive tablette en dessous de 1300px
+    //nav bar
     .nav-bar {
 
         .nav-link {
@@ -37,6 +39,7 @@
         }
     }
 
+    // card home (users,portals,almanax)
     .item-container {
         flex-direction: column;
 
@@ -58,10 +61,19 @@
             background-position: center;
         }
 
+
     }
 
+    .portal-details {
+        img {
+            visibility: hidden;
+        }
+    }
+
+
+    //post
     .post-container {
-        width: 100%;
+        width: 95%;
 
         .post-head {
             .title {
@@ -71,7 +83,17 @@
             .message-user {
                 width: 30%;
             }
+
+            .post-vote {
+                font-size: 1em;
+
+                button {
+                    scale: 1;
+                }
+            }
         }
+
+
 
     }
 
@@ -79,6 +101,8 @@
         width: 70%;
     }
 
+
+    //profile user et ces postes
     .user-container {
         width: 100%;
         flex-direction: column;
@@ -105,6 +129,49 @@
             .post-container {
                 width: 100%;
             }
+
+            .post-head {
+                .message-user {
+                    display: flex;
+                    flex-direction: row;
+                    font-size: 1.5em;
+                }
+            }
         }
+    }
+
+
+    // portails et almanax
+
+    .item-list {
+        .item-card {
+            width: calc(50% - 16px * 2);
+
+            &.today {
+                width: calc(50% - 16px * 2);
+            }
+        }
+    }
+
+    //guides
+    .guide-list {
+        .guide-card {
+            width: 100%;
+        }
+    }
+
+    //dashboard
+    .table-admin-category {
+        .table-row {
+            p {
+                padding: 0px;
+            }
+
+            grid-template-columns: 1% 5% 25% 10% 25%;
+        }
+    }
+
+    .table-admin-guide {
+        .table-row {}
     }
 }

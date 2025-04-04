@@ -10,32 +10,24 @@
 		<div class="edit-container">
 			{{ form_start(form) }}
 
-			<div class="form-group">
-				{{ form_widget(form.title, {'attr': {'class': 'form-input', 'placeholder': 'titre'}}) }}
-			</div>
 
-			<div class="form-group">
-				{{ form_widget(form.text, {'attr': {'class': 'form-input-text', 'placeholder': 'contenu'}}) }}
-			</div>
+			{{ form_widget(form.title, {'attr': {'class': 'form-input', 'placeholder': 'titre'}}) }}
 
-			<div class="form-group">
-				{{ form_widget(form.image, {'attr': {'class': 'form-input file-upload'}}) }}
-			</div>
 
-			<div class="form-group">
-				{{ form_widget(form.date, {'attr': {'class': 'form-input', 'placeholder': 'date'}}) }}
-			</div>
-			<div class="form-group">
-				{{ form_widget(form.categories, {'attr': {'class': 'form-input', 'placeholder': 'categories'}}) }}
-			</div>
-			<div class="form-group">
-				{{ form_widget(form.user, {'attr': {'class': 'form-input', 'placeholder': 'user'}}) }}
-			</div>
+			{{ form_widget(form.text, {'attr': {'class': 'form-input text', 'placeholder': 'contenu'}}) }}
 
-			<button type="submit" class="btn-submit">Modifier</button>
+
+			{{ form_widget(form.image, {'attr': {'class': 'form-input file-upload'}}) }}
+
+
+			{{ form_widget(form.categories, {'attr': {'class': 'form-input tag', 'placeholder': 'categories'}}) }}
+
+			<div class="inline">
+				<button type="submit" class="btn-submit">Modifier</button>
+				<a href="{{ path('app_dashboard') }}" class="edit-cancel">Annuler</a>
+			</div>
 			{{ form_end(form) }}
 
-			<a href="{{ path('app_dashboard') }}" class="edit-cancel">Annuler</a>
 		</div>
 	</section>
 {% endblock %}
