@@ -12,10 +12,10 @@
 				{% for user in users %}
 					{% if user.img %}
 						<a href="{{ path('app_user_show', {'id': user.id}) }}">
-							<img src="{{ asset('uploads/images/' ~ user.img) }}" class="home-icon"></a>
+							<img class="home-icon" src="{{ asset('uploads/images/' ~ user.img) }}" alt="image de profile de {{user.userName}}"></a>
 					{% else %}
 						<a href="{{ path('app_user_show', {'id': user.id}) }}">
-							<img src="images/user_img.png" class="home-icon"></a>
+							<img class="home-icon" src="images/user_img.png" alt="image de profile de {{user.userName}}"></a>
 					{% endif %}
 				{% endfor %}
 
@@ -25,7 +25,7 @@
 			<a href="{{ path('app_portals') }}">
 				<h2>Portails</h2>
 
-				<img class="portal-background" src="{{ asset('/images/dim.jpg') }}" alt="">
+				<img class="portal-background" src="{{ asset('/images/dim.jpg') }}" alt="portails">
 
 			</a>
 		</div>
@@ -35,7 +35,7 @@
 				<h3>{{ almanax.tribute.item.name }}
 					x
 					{{ almanax.tribute.quantity }}</h3>
-				<img src="{{ almanax.tribute.item.image_urls.sd }}">
+				<img src="{{ almanax.tribute.item.image_urls.sd }}" alt="{{ almanax.tribute.item.name }}">
 				<p>{{ almanax.bonus.description }}</p>
 			</a>
 		</div>
@@ -52,7 +52,7 @@
 					<h3 class="title">{{ category.title }}</h3>
 
 					<a href="{{ path('app_category_show', {'id': category.id}) }}">
-						<img src="{{ asset('uploads/images/' ~ category.img) }}" width="500">
+						<img src="{{ asset('uploads/images/' ~ category.img) }}" width="500" alt="image de la categorie {{category.title}}">
 					</a>
 
 				</div>

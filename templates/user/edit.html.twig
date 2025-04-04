@@ -10,26 +10,28 @@
 	<div class="edit-container">
 		{{ form_start(form) }}
 
-		<div class="form-group">
-			{{ form_widget(form.userName, {'attr': {'class': 'form-input', 'placeholder': 'Nom d\'utilisateur'}}) }}
-            </div>
 
-            <div class="form-group">
-                {{ form_widget(form.email, {'attr': {'class': 'form-input', 'placeholder': 'Email'}}) }}
-            </div>
+		{{ form_widget(form.userName, {'attr': {'class': 'form-input', 'placeholder': 'Nom d\'utilisateur'}}) }}
+           
 
-            <div class="form-group">
-                {{ form_widget(form.bio, {'attr': {'class': 'form-input-text', 'placeholder': 'Votre bio'}}) }}
-            </div>
+            
+        {{ form_widget(form.email, {'attr': {'class': 'form-input', 'placeholder': 'Email'}}) }}
+           
 
-            <div class="form-group">
-                {{ form_widget(form.image, {'attr': {'class': 'form-input file-upload'}}) }}
-            </div>
+            
+        {{ form_widget(form.bio, {'attr': {'class': 'form-input-text', 'placeholder': 'Votre bio'}}) }}
+           
 
-            <button type="submit" class="btn-submit">Modifier</button>
+            
+        {{ form_widget(form.image, {'attr': {'class': 'form-input file-upload'}}) }}
+           
+
+            <div class="inline">
+                <button type="submit" class="btn-submit">Modifier</button>
+                <a href="{{ path('app_user_show', {'id': app.user.id}) }}" class="edit-cancel">Annuler</a>
+            </div>
             {{ form_end(form) }}
 
-            <a href="{{ path('app_user_show', {'id': app.user.id}) }}" class="edit-cancel">Annuler</a>
-        </div>
+        
     </section>
 {% endblock %}

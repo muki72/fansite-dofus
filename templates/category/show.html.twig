@@ -11,7 +11,7 @@
 			<div class="guide-card">
 				<h2>{{ guide.title }}</h2>
 				<div class="guide-background">
-					<a href="{{ path('app_guide_show', {'id': guide.id}) }}"><img src="{{ asset('uploads/images/' ~ guide.img) }}"></a>
+					<a href="{{ path('app_guide_show', {'id': guide.id}) }}"><img src="{{ asset('uploads/images/' ~ guide.img) }}" alt="{{ guide.title}}"></a>
 				</div>
 			</div>
 		</div>

@@ -59,14 +59,6 @@ final class ReplyController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_reply_show', methods: ['GET'])]
-    public function show(Reply $reply): Response
-    {
-        return $this->render('reply/show.html.twig', [
-            'reply' => $reply,
-        ]);
-    }
-
     #[Route('/{id}/edit', name: 'app_reply_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Reply $reply, EntityManagerInterface $entityManager): Response
     {

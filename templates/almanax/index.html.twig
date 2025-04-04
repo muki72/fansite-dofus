@@ -18,7 +18,7 @@
 			<div class="rewards">
 				<div class="inline">
 					<span>{{ almanaxData[0].reward_kamas }}</span>
-					<img src="{{ asset('images/Kamas.webp') }}">
+					<img src="{{ asset('images/Kamas.webp') }}" alt="logo Kamas">
 				</div>
 			</div>
 		</div>
@@ -30,12 +30,13 @@
 				<h3>{{ almanax.date|format_datetime(pattern: 'eeee dd LLLL' , locale: 'fr') }}</h3>
 				<img src="{{ almanax.tribute.item.image_urls.sd }}" alt="{{ almanax.tribute.item.name }}">
 				<h3>{{ almanax.tribute.item.name }}
-					x {{ almanax.tribute.quantity }}</h3>
+					x
+					{{ almanax.tribute.quantity }}</h3>
 				<p>{{ almanax.bonus.description }}</p>
 				<div class="rewards">
 					<div class="inline">
 						<span>{{ almanax.reward_kamas }}</span>
-						<img src="{{ asset('images/Kamas.webp') }}">
+						<img src="{{ asset('images/Kamas.webp') }}" alt="logo Kamas">
 					</div>
 
 				</div>

@@ -12,13 +12,13 @@
 				{% if user %}
 					{% if user.img %}
 						<a href="{{ path('app_user_show', {'id': user.id}) }}">
-							<img src="{{ asset('uploads/images/' ~ user.img) }}">
+							<img src="{{ asset('uploads/images/' ~ user.img) }}" alt="image de profile de {{user.userName}}">
 						</a>
 					{% else %}
 
 
 						<a href="{{ path('app_user_show', {'id': user.id}) }}">
-							<img src="..\images\user_img.png" class="home"></a>
+							<img class="home" src="..\images\user_img.png" alt="image de profile de {{user.userName}}"></a>
 
 					{% endif %}
 					<p>{{ user.bio }}</p>
@@ -77,10 +77,10 @@
 								<p>{{ post.user.userName }}</p>
 							</a>
 							{% if post.user.img %}
-								<a href="{{ path('app_user_show', {'id': post.user.id}) }}"><img src="{{ asset('uploads/images/' ~ post.user.img) }}"></a>
+								<a href="{{ path('app_user_show', {'id': post.user.id}) }}"><img src="{{ asset('uploads/images/' ~ post.user.img) }}" alt="image de profile de {{ post.user.userName }}"></a>
 							{% else %}
 								<a href="{{ path('app_user_show', {'id': post.user.id}) }}">
-									<img src="..\images\user_img.png" class="icon"></a>
+									<img class="icon" src="..\images\user_img.png" alt="image de profile de {{ post.user.userName }}"></a>
 							{% endif %}
 
 						</div>
@@ -89,7 +89,7 @@
 					<div class="post-body">
 						{% if post.img is not null %}
 							<a href="{{ asset('uploads/images/' ~ post.img) }}" target="_blank">
-								<img src="{{ asset('uploads/images/' ~ post.img) }}">
+								<img src="{{ asset('uploads/images/' ~ post.img) }}" alt="image du poste {{ post.title }} ajouté par {{ post.user.userName }}">
 							</a>
 						{% endif %}
 						<p>{{ post.text }}</p>
@@ -128,10 +128,10 @@
 									</a>
 
 									{% if reply.user.img %}
-										<a href="{{ path('app_user_show', {'id': reply.user.id}) }}"><img src="{{ asset('uploads/images/' ~ reply.user.img) }}"></a>
+										<a href="{{ path('app_user_show', {'id': reply.user.id}) }}"><img src="{{ asset('uploads/images/' ~ reply.user.img) }}" alt="image de profile de {{ reply.user.userName }}"></a>
 									{% else %}
 										<a href="{{ path('app_user_show', {'id': reply.user.id}) }}">
-											<img src="..\images\user_img.png" class="icon"></a>
+											<img class="icon" src="..\images\user_img.png" alt="image de profile de {{ reply.user.userName }}"></a>
 									{% endif %}
 
 
@@ -139,7 +139,7 @@
 								<div class="post-body">
 									{% if reply.img is not null %}
 										<a href="{{ asset('uploads/images/' ~ reply.img) }}" target="_blank">
-											<img src="{{ asset('uploads/images/' ~ reply.img) }}">
+											<img src="{{ asset('uploads/images/' ~ reply.img) }}" alt="image de réponse ajouté par {{ reply.user.userName }}">
 										</a>
 									{% endif %}
 									<p>{{ reply.text }}</p>
