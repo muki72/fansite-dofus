@@ -1,7 +1,7 @@
 {% block body %}
-	<button class="btn-submit">
-		<a href="{{ path('app_guide_new') }}">Creer un Guide</a>
-	</button>
+
+	<a class="btn-submit" href="{{ path('app_guide_new') }}">Creer un Guide</a>
+
 
 	{% for guide in guides %}
 
@@ -17,12 +17,12 @@
 				</div>
 				<p>{{ guide.date ? guide.date|date('d/m/Y') : '' }}</p>
 				<div class="actions">
-					<button class="btn-submit">
-						<a href="{{ path('app_guide_show', {'id': guide.id}) }}">Afficher</a>
-					</button>
-					<button class="btn-submit">
-						<a href="{{ path('app_guide_edit', {'id': guide.id}) }}">Modifier</a>
-					</button>
+
+					<a class="btn-submit" href="{{ path('app_guide_show', {'id': guide.id}) }}">Afficher</a>
+
+
+					<a class="btn-submit" href="{{ path('app_guide_edit', {'id': guide.id}) }}">Modifier</a>
+
 
 					{% include 'guide/_delete_form.html.twig' %}
 				</div>

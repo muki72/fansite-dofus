@@ -18,7 +18,7 @@
 
 
 						<a href="{{ path('app_user_show', {'id': user.id}) }}">
-							<img class="home" src="..\images\user_img.png" alt="image de profile de {{user.userName}}"></a>
+							<img class="home" src="{{ asset('images/user_img.png') }}" alt="image de profile de {{user.userName}}"></a>
 
 					{% endif %}
 					<p>{{ user.bio }}</p>
@@ -80,7 +80,7 @@
 								<a href="{{ path('app_user_show', {'id': post.user.id}) }}"><img src="{{ asset('uploads/images/' ~ post.user.img) }}" alt="image de profile de {{ post.user.userName }}"></a>
 							{% else %}
 								<a href="{{ path('app_user_show', {'id': post.user.id}) }}">
-									<img class="icon" src="..\images\user_img.png" alt="image de profile de {{ post.user.userName }}"></a>
+									<img class="icon" src="{{ asset('images/user_img.png') }}" alt="image de profile de {{ post.user.userName }}"></a>
 							{% endif %}
 
 						</div>
@@ -119,7 +119,7 @@
 					<article class="reply-container">
 
 
-						<h3 class="title">"{{ post.title }}"</h2>
+						<h3 class="title">"{{ post.title }}"</h3>
 						{% for reply in post.replies %}
 							<div class="reply-content">
 								<div class="message-user">
@@ -131,7 +131,7 @@
 										<a href="{{ path('app_user_show', {'id': reply.user.id}) }}"><img src="{{ asset('uploads/images/' ~ reply.user.img) }}" alt="image de profile de {{ reply.user.userName }}"></a>
 									{% else %}
 										<a href="{{ path('app_user_show', {'id': reply.user.id}) }}">
-											<img class="icon" src="..\images\user_img.png" alt="image de profile de {{ reply.user.userName }}"></a>
+											<img class="icon" src="{{ asset('images/user_img.png') }}" alt="image de profile de {{ reply.user.userName }}"></a>
 									{% endif %}
 
 

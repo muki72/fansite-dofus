@@ -12,9 +12,9 @@
 
 	<div class="nav-login">
 		{% if is_granted('ROLE_ADMIN') %}
-			<button class="btn-submit">
-				<a href="{{ path('app_dashboard') }}">dashboard</a>
-			</button>
+
+			<a class="btn-submit" href="{{ path('app_dashboard') }}">dashboard</a>
+
 		{% endif %}
 		{% if app.user %}
 			{% if app.user.img %}
@@ -28,9 +28,9 @@
 		{% endif %}
 
 		{% if not is_granted('ROLE_USER')%}
-			<button class="btn-submit">
-				<a href="{{ path('app_login') }}">Se connecter</a>
-			</button>
+
+			<a class="btn-submit" href="{{ path('app_login') }}">Se connecter</a>
+
 		{% endif %}
 	</div>
 </nav>

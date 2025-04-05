@@ -8,26 +8,26 @@
 
 	{% for guide in category.guides %}
 		<div class="guide-list">
-			<div class="guide-card">
-				<h2>{{ guide.title }}</h2>
-				<div class="guide-background">
-					<a href="{{ path('app_guide_show', {'id': guide.id}) }}"><img src="{{ asset('uploads/images/' ~ guide.img) }}" alt="{{ guide.title}}"></a>
+			<a href="{{ path('app_guide_show', {'id': guide.id}) }}">
+				<div class="guide-card">
+					<h2>{{ guide.title }}</h2>
+					<div class="guide-background"><img src="{{ asset('uploads/images/' ~ guide.img) }}" alt="{{ guide.title}}"></div>
 				</div>
-			</div>
+			</a>
 		</div>
 
 	{% endfor %}
 
 	<div class="inline">
-		<button class="btn-submit">
-			<a href="{{ path('home') }}">accueil</a>
-		</button>
+
+		<a class="btn-submit" href="{{ path('home') }}">accueil</a>
+
 
 		{% if is_granted('ROLE_ADMIN') %}
 
-			<button class="btn-submit">
-				<a href="{{ path('app_category_edit', {'id': category.id}) }}">edit</a>
-			</button>
+
+			<a class="btn-submit" href="{{ path('app_category_edit', {'id': category.id}) }}">edit</a>
+
 		{% endif %}
 	</div>
 

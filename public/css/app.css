@@ -139,10 +139,11 @@ h2 {
   transform: translate(-50%, -50%);
 }
 .nav-bar .logo-wrapper a img {
-  height: 250px;
-  width: 250px;
+  height: 200px;
+  width: 200px;
 }
 .nav-bar .logo-wrapper a img:hover {
+  transition: all 0.3s ease-in;
   scale: 1.05;
 }
 .nav-bar .nav-login {
@@ -157,7 +158,7 @@ h2 {
   border: solid 1px #00E5FF;
 }
 .nav-bar .nav-login .icon:hover {
-  transition: ease-in 0.5s;
+  transition: all 0.3s ease-in;
   transform: translateY(-5px);
 }
 
@@ -179,6 +180,11 @@ h2 {
   height: 500px;
   padding: 30px;
   overflow-y: scroll;
+}
+.item-container .item-home-card:hover {
+  transition: all 0.3s ease-in;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 229, 255, 0.6);
 }
 .item-container .portal-background {
   width: 100%;
@@ -249,7 +255,8 @@ h2 {
   border: solid 1px #f700ff;
   border-bottom: solid 5px #f700ff;
   border-left: solid 5px #f700ff;
-  box-shadow: none;
+  transition: all 0.3s ease-in;
+  transform: translateY(-5px);
 }
 
 .server-img {
@@ -375,6 +382,7 @@ h2 {
   background-repeat: no-repeat;
   width: 100%;
   padding-bottom: 1em;
+  border-top: solid 5px #00E5FF;
   border-bottom: solid 5px #00E5FF;
   box-shadow: 0 4px 12px rgba(0, 229, 255, 0.6);
 }
@@ -405,6 +413,11 @@ h2 {
   border-bottom: solid 5px #00E5FF;
   border-left: solid 5px #00E5FF;
 }
+.category-background .categories-home .categories-card img:hover {
+  transition: all 0.3s ease-in;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 229, 255, 0.6);
+}
 
 .guide-list {
   display: flex;
@@ -414,7 +427,8 @@ h2 {
   width: 98%;
 }
 .guide-list .guide-card {
-  width: 70%;
+  width: -moz-fit-content;
+  width: fit-content;
   padding: 30px;
   background-color: #1E1E1E;
   border: solid 1px #00E5FF;
@@ -434,6 +448,11 @@ h2 {
   border-radius: 15px;
   border-bottom: solid 5px #00E5FF;
   border-left: solid 5px #00E5FF;
+}
+.guide-list .guide-card:hover {
+  transition: all 0.3s ease-in;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 229, 255, 0.6);
 }
 
 .guide-index {

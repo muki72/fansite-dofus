@@ -8,6 +8,7 @@ $color-pink: #f700ff; // rose
 $text-shadow: 1px 1px 5px #1E1E1E;
 $text-shadow-primary: 1px 0px 0px #00E5FF;
 $text-shadow-pink: 1px 0px 0px #f700ff;
+$box-shadow: 0 4px 12px rgba($color-primary, 0.6);
 
 $border: solid 1px $color-primary;
 $border-bottom: solid 5px $color-primary;
@@ -179,11 +180,12 @@ h2 {
 
         a {
             img {
-                height: 250px;
-                width: 250px;
+                height: 200px;
+                width: 200px;
             }
 
             img:hover {
+                transition: all 0.3s ease-in;
                 scale: 1.05;
             }
         }
@@ -204,7 +206,7 @@ h2 {
         }
 
         .icon:hover {
-            transition: ease-in 0.5s;
+            transition: all 0.3s ease-in;
             transform: translateY(- 5px);
         }
     }
@@ -233,6 +235,12 @@ h2 {
         padding: 30px;
         overflow-y: scroll;
 
+    }
+
+    .item-home-card:hover {
+        transition: all 0.3s ease-in;
+        transform: translateY(- 5px);
+        box-shadow: $box-shadow;
     }
 
     .portal-background {
@@ -315,7 +323,9 @@ h2 {
         border: solid 1px $color-pink;
         border-bottom: $border-bottom-pink;
         border-left: $border-left-pink;
-        box-shadow: none;
+        transition: all 0.3s ease-in;
+        transform: translateY(- 5px);
+
     }
 }
 
@@ -448,6 +458,7 @@ h2 {
     background-repeat: no-repeat;
     width: 100%;
     padding-bottom: 1em;
+    border-top: $border-bottom;
     border-bottom: $border-bottom;
     box-shadow: 0 4px 12px rgba($color-primary, 0.6);
 
@@ -481,6 +492,12 @@ h2 {
 
 
             }
+
+            img:hover {
+                transition: all 0.3s ease-in;
+                transform: translateY(- 5px);
+                box-shadow: $box-shadow;
+            }
         }
 
     }
@@ -499,7 +516,7 @@ h2 {
     width: 98%;
 
     .guide-card {
-        width: 70%;
+        width: fit-content;
         padding: 30px;
         background-color: $color-secondary;
         border: $border;
@@ -521,6 +538,12 @@ h2 {
                 border-left: $border-left;
             }
         }
+    }
+
+    .guide-card:hover {
+        transition: all 0.3s ease-in;
+        transform: translateY(- 5px);
+        box-shadow: $box-shadow;
     }
 
 }

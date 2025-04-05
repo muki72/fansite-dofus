@@ -15,19 +15,19 @@
 		<p>{{ guide.text }}</p>
 
 
-		<td>{{ guide.date ? guide.date|date('Y-m-d') : '' }}</td>
+		<p>{{ guide.date ? guide.date|date('Y-m-d') : '' }}</p>
 
 	</div>
 
 	<div class="inline">
-		<button class="btn-submit">
-			<a href="{{ path('home') }}">accueil</a>
-		</button>
+
+		<a class="btn-submit" href="{{ path('home') }}">accueil</a>
+
 
 		{% if is_granted('ROLE_ADMIN') %}
-			<button class="btn-submit">
-				<a href="{{ path('app_guide_edit', {'id': guide.id}) }}">edit</a>
-			</button>
+
+			<a class="btn-submit" href="{{ path('app_guide_edit', {'id': guide.id}) }}">edit</a>
+
 		{% endif %}
 	</div>
 

@@ -1,8 +1,8 @@
 {% block body %}
 
-	<button class="btn-submit">
-		<a href="{{ path('app_category_new') }}">Créer une catégorie</a>
-	</button>
+
+	<a class="btn-submit" href="{{ path('app_category_new') }}">Créer une catégorie</a>
+
 
 	{% for category in categories %}
 		<div class="table-admin-category">
@@ -16,12 +16,12 @@
 				</div>
 				<p>{{ category.date ? category.date|date('d/m/Y') : '' }}</p>
 				<div class="actions">
-					<button class="btn-submit">
-						<a href="{{ path('app_category_show', {'id': category.id}) }}">Afficher</a>
-					</button>
-					<button class="btn-submit">
-						<a href="{{ path('app_category_edit', {'id': category.id}) }}">Modifier</a>
-					</button>
+
+					<a class="btn-submit" href="{{ path('app_category_show', {'id': category.id}) }}">Afficher</a>
+
+
+					<a class="btn-submit" href="{{ path('app_category_edit', {'id': category.id}) }}">Modifier</a>
+
 
 					{% include 'category/_delete_form.html.twig' %}
 
