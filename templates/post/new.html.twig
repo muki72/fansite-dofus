@@ -4,9 +4,29 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Creer un Poste</h1>
+	<section class="edit-section">
+		<h1 class="title">Nouveau Poste</h1>
 
-	{{ include('post/_form.html.twig') }}
+		<div class="edit-container">
+			{{ form_start(form) }}
 
 
+			{{ form_widget(form.title, {'attr': {'class': 'form-input', 'placeholder': 'Titre'}}) }}
+
+
+			{{ form_widget(form.text, {'attr': {'class': 'form-input text', 'placeholder': 'Contenu'}}) }}
+
+
+			{{ form_widget(form.image, {'attr': {'class': 'form-input file-upload'}}) }}
+
+
+			<div class="inline">
+
+				<button type="submit" class="btn-submit">creer</button>
+				<a href="{{ path('home') }}" class="edit-cancel">Annuler</a>
+			</div>
+			{{ form_end(form) }}
+
+		</div>
+	</section>
 {% endblock %}

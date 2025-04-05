@@ -1,13 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edition de Réponse{% endblock %}
+{% block title %}Edition de Réponse
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Reply</h1>
+	<section class="edit-section">
+		<h1 class="title">Modifier une Réponse</h1>
 
-    {{ include('reply/_form.html.twig', {'button_label': 'Update'}) }}
+		<div class="edit-container">
+			{{ form_start(form) }}
 
-    <a  class="edit-cancel" href="{{ path('home') }}">Annuler</a>
+			{{ form_widget(form.text, {'attr': {'class': 'form-input text', 'placeholder': 'contenu'}}) }}
 
-    {{ include('reply/_delete_form.html.twig') }}
+
+			{{ form_widget(form.image, {'attr': {'class': 'form-input file-upload'}}) }}
+
+
+			<div class="inline">
+				<button type="submit" class="btn-submit">Modifier</button>
+				<a href="{{ path('home') }}" class="edit-cancel">Annuler</a>
+			</div>
+			{{ form_end(form) }}
+
+		</div>
+	</section>
 {% endblock %}

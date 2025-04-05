@@ -103,11 +103,11 @@ final class PostController extends AbstractController
         // Récupère l'utilisateur actuellement connecté
         $appUser = $security->getUser();
 
+
         // Vérifie si l'utilisateur est bien l'auteur du post
-        if ($appUser !== $post->getUser()) {
+        if ($appUser !== $post->getUser() && !$this->isGranted("ROLE_ADMIN")) {
             return $this->redirectToRoute('home');
         }
-
         if ($this->isCsrfTokenValid('delete' . $post->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($post);
             $entityManager->flush();

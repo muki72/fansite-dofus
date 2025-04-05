@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Bundle\SecurityBundle\Security;
 use \DateTimeImmutable;
 
 
@@ -60,17 +61,27 @@ final class ReplyController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_reply_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Reply $reply, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Reply $reply, EntityManagerInterface $entityManager, Security $security): Response
     {
         //securité pour verifier le role du visiteur
-    $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
+
+        // Récupère l'utilisateur actuellement connecté
+        $appUser = $security->getUser();
+
+        // Vérifie si l'utilisateur est bien l'auteur de la réponse
+        if ($appUser !== $reply->getUser()) {
+            return $this->redirectToRoute('home');
+        }
+
         $form = $this->createForm(ReplyType::class, $reply);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_reply_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('reply/edit.html.twig', [
@@ -87,6 +98,6 @@ final class ReplyController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_reply_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
     }
 }
