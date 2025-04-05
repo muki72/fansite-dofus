@@ -72,14 +72,16 @@
 				</a>
 				<a href="{{ path('home', {sort: 'votes'}) }}#postes" class="btn-submit{% if currentSort == 'votes' %} active{% endif %}">
 					Vote
-					<i class="fa-solid fa-thumbs-up"></i>
+					<i class="fa-solid fa-arrow-up-wide-short"></i>
 				</a>
 			</div>
 		</div>
 
 	</div>
 
-	<a class="btn-submit" href="{{ path('app_post_new') }}">Creer un Post</a>
+	<a class="btn-submit" href="{{ path('app_post_new') }}">Creer un Post
+		<i class="fa-solid fa-pen-nib"></i>
+	</a>
 
 	{% include 'post/index.html.twig' %}
 

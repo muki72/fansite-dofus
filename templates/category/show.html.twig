@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category
+{% block title %}Categorie
 {% endblock %}
 
 {% block body %}
@@ -20,13 +20,17 @@
 
 	<div class="inline">
 
-		<a class="btn-submit" href="{{ path('home') }}">accueil</a>
+		<a class="btn-submit" href="{{ path('home') }}">accueil
+			<i class="fa-solid fa-house"></i>
+		</a>
 
 
 		{% if is_granted('ROLE_ADMIN') %}
 
 
-			<a class="btn-submit" href="{{ path('app_category_edit', {'id': category.id}) }}">edit</a>
+			<a class="btn-submit" href="{{ path('app_category_edit', {'id': category.id}) }}">Modifier
+				<i class="fa-solid fa-pen-to-square"></i>
+			</a>
 
 		{% endif %}
 	</div>

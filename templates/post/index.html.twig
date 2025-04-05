@@ -54,17 +54,25 @@
 
 
 			<div class="post-date">
-				<p>{{ post.date ? post.date|date("d-m-Y") : '' }}</p>
+				<p>
+					<i class="fa-solid fa-calendar-days"></i>
+					{{ post.date ? post.date|date("d-m-Y") : '' }}
+
+				</p>
 			</div>
 
 
 			<div class="post-actions">
-				<a class="btn-submit" href="{{ path('app_reply_new', {'id': post.id}) }}">Répondre</a>
+				<a class="btn-submit" href="{{ path('app_reply_new', {'id': post.id}) }}">
+					<i class="fa-solid fa-comment"></i>
+				</a>
 
 				{% if is_granted('ROLE_ADMIN') or (app.user and app.user.id is same as(post.user.id)) %}
 
 					<a class="btn-submit" href="{{ path('app_post_edit', {'id': post.id}) }}">
-						edit</a>
+						Modifier
+						<i class="fa-solid fa-pen-to-square"></i>
+					</a>
 
 					{{ include('post/_delete_form.html.twig') }}
 				{% endif %}
@@ -101,13 +109,19 @@
 							<p>{{ reply.text }}</p>
 						</div>
 						<div class="post-date">
-							<p>{{ reply.date ? reply.date|date("d-m-Y") : '' }}</p>
+							<p>
+								<i class="fa-solid fa-calendar-days"></i>
+								{{ reply.date ? reply.date|date("d-m-Y") : '' }}
+
+							</p>
 						</div>
 
 						{# SI admin OU (connecté ET l'user est le proprio)  #}
 						<div class="post-actions">
 							{% if is_granted('ROLE_ADMIN') or (app.user and app.user.id is same as(reply.user.id)) %}
-								<a class="btn-submit" href="{{ path('app_reply_edit', {'id': reply.id}) }}">edit</a>
+								<a class="btn-submit" href="{{ path('app_reply_edit', {'id': reply.id}) }}">Modifier
+									<i class="fa-solid fa-pen-to-square"></i>
+								</a>
 								{{ include('reply/_delete_form.html.twig') }}
 							{% endif %}
 						</div>

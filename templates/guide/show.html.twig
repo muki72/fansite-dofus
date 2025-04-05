@@ -21,12 +21,16 @@
 
 	<div class="inline">
 
-		<a class="btn-submit" href="{{ path('home') }}">accueil</a>
+		<a class="btn-submit" href="{{ path('home') }}">Accueil
+			<i class="fa-solid fa-house"></i>
+		</a>
 
 
 		{% if is_granted('ROLE_ADMIN') %}
 
-			<a class="btn-submit" href="{{ path('app_guide_edit', {'id': guide.id}) }}">edit</a>
+			<a class="btn-submit" href="{{ path('app_guide_edit', {'id': guide.id}) }}">Modifier
+				<i class="fa-solid fa-pen-to-square"></i>
+			</a>
 
 		{% endif %}
 	</div>

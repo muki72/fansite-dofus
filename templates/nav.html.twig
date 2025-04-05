@@ -1,8 +1,14 @@
 <nav class="nav-bar">
 	<div class="nav-link">
-		<a class="btn-submit" href="{{ path('home') }}#postes">Postes</a>
-		<a class="btn-submit" href="{{ path('home') }}#guides">Guides</a>
-		<a class="btn-submit" href="{{ path('home_rgpd') }}">RPGD</a>
+		<a class="btn-submit" href="{{ path('home') }}#postes">Postes
+			<i class="fa-solid fa-comments"></i>
+		</a>
+		<a class="btn-submit" href="{{ path('home') }}#guides">Guides
+			<i class="fa-solid fa-book-bookmark"></i>
+		</a>
+		<a class="btn-submit" href="{{ path('home_rgpd') }}">Conditions
+			<i class="fa-solid fa-scale-balanced"></i>
+		</a>
 
 	</div>
 
@@ -13,7 +19,9 @@
 	<div class="nav-login">
 		{% if is_granted('ROLE_ADMIN') %}
 
-			<a class="btn-submit" href="{{ path('app_dashboard') }}">dashboard</a>
+			<a class="btn-submit" href="{{ path('app_dashboard') }}">dashboard
+				<i class="fa-solid fa-table"></i>
+			</a>
 
 		{% endif %}
 		{% if app.user %}
