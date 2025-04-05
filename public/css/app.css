@@ -64,15 +64,18 @@ h2 {
   cursor: pointer;
   text-align: center;
   display: inline-block;
+  transition: all 0.3s ease-in-out;
 }
 .btn-submit:hover {
   background-color: #00E5FF;
   color: #181818;
   border-color: #1E1E1E;
   box-shadow: 0 4px 12px rgba(0, 229, 255, 0.6);
+  transform: scale(1.05);
 }
 .btn-submit:active {
   box-shadow: 0 4px 12px rgba(0, 229, 255, 0.6);
+  transform: scale(1.05);
 }
 .btn-submit.active {
   background-color: #00E5FF;
@@ -154,7 +157,8 @@ h2 {
   border: solid 1px #00E5FF;
 }
 .nav-bar .nav-login .icon:hover {
-  scale: 1.05;
+  transition: ease-in 0.5s;
+  transform: translateY(-5px);
 }
 
 .item-container {

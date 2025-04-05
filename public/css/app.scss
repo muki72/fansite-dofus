@@ -89,6 +89,7 @@ h2 {
     cursor: pointer;
     text-align: center;
     display: inline-block;
+    transition: all 0.3s ease-in-out;
 
 
     &:hover {
@@ -96,10 +97,13 @@ h2 {
         color: $color-background;
         border-color: $color-secondary;
         box-shadow: 0 4px 12px rgba($color-primary, 0.6);
+        transform: scale(1.05);
+
     }
 
     &:active {
         box-shadow: 0 4px 12px rgba($color-primary, 0.6);
+        transform: scale(1.05);
     }
 
     &.active {
@@ -200,7 +204,8 @@ h2 {
         }
 
         .icon:hover {
-            scale: 1.05;
+            transition: ease-in 0.5s;
+            transform: translateY(- 5px);
         }
     }
 
@@ -811,7 +816,6 @@ h2 {
     display: flex;
     flex-direction: row;
     width: 98%;
-
 
     .user-profile {
         display: flex;
