@@ -31,7 +31,6 @@ final class HomeController extends AbstractController
             : $postRepository->findBy([], ['date' => 'DESC']);
 
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
             'categories' => $categoryRepository->findAll(),
             'users' => $userRepository->findAll(),
             'posts' => $posts,
