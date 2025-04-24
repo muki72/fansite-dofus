@@ -594,7 +594,6 @@ h2 {
   font-weight: bolder;
   width: 100%;
   text-align: center;
-  text-transform: capitalize;
 }
 .post-container .post-date {
   display: flex;
