@@ -108,9 +108,23 @@ h2 {
   box-shadow: 0 2px 6px rgba(0, 229, 255, 0.4);
 }
 
-.icon {
-  width: 40px;
-  height: 80px;
+.user-icon {
+  width: 120px;
+  height: 120px;
+  border-radius: 15px;
+  border: solid 1px #00E5FF;
+  overflow: hidden;
+}
+.user-icon img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.user-icon:hover {
+  transition: all 0.3s ease-in;
+  transform: translateY(-5px);
 }
 
 .home-icon {
@@ -150,16 +164,6 @@ h2 {
   display: flex;
   align-items: center;
   gap: 10px;
-}
-.nav-bar .nav-login .icon {
-  width: 120px;
-  height: 120px;
-  border-radius: 15px;
-  border: solid 1px #00E5FF;
-}
-.nav-bar .nav-login .icon:hover {
-  transition: all 0.3s ease-in;
-  transform: translateY(-5px);
 }
 
 .item-container {
@@ -476,7 +480,6 @@ h2 {
   font-weight: bolder;
   width: 100%;
   text-align: center;
-  text-transform: capitalize;
 }
 
 .post-title {
@@ -671,7 +674,6 @@ h2 {
   padding: 10px;
   width: 100%;
   text-align: center;
-  text-transform: capitalize;
 }
 .reply-container .reply-content .post-date {
   display: flex;
@@ -708,10 +710,6 @@ h2 {
   justify-content: center;
   align-items: center;
   gap: 3em;
-}
-.user-container .user-profile .user-infos img {
-  width: 200px;
-  border: solid 1px #00E5FF;
 }
 .user-container .user-profile .user-actions {
   display: flex;

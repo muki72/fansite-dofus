@@ -11,13 +11,13 @@
 
 				{% if user %}
 					{% if user.img %}
-						<a href="{{ path('app_user_show', {'id': user.id}) }}">
+						<a class="user-icon" href="{{ path('app_user_show', {'id': user.id}) }}">
 							<img src="{{ asset('uploads/images/' ~ user.img) }}" alt="image de profile de {{user.userName}}">
 						</a>
 					{% else %}
 
 
-						<a href="{{ path('app_user_show', {'id': user.id}) }}">
+						<a class="user-icon" href="{{ path('app_user_show', {'id': user.id}) }}">
 							<img class="home" src="{{ asset('images/user_img.png') }}" alt="image de profile de {{user.userName}}"></a>
 
 					{% endif %}
